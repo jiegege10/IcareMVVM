@@ -28,7 +28,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
      * 打开等待框
      */
     override fun showLoading(message: String) {
-        Log.d("XXXXXXXXXX","执行")
         showProgressDialog(message)
     }
 
@@ -36,7 +35,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
      * 关闭等待框
      */
     override fun dismissLoading() {
-        Log.d("XXXXXXXXXX","执行1")
         hideProgressDialog()
     }
 

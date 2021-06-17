@@ -1,8 +1,10 @@
 package com.icare.jetpackmvvm.base.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +26,8 @@ import com.kaopiz.kprogresshud.KProgressHUD
  */
 abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     val mWaitPorgressDialog by lazy { KProgressHUD.create(this) }
+    private val TAG: String = this.javaClass.simpleName
+
     /**
      * 是否需要使用DataBinding 供子类BaseVmDbActivity修改，用户请慎动
      */
@@ -111,19 +115,22 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
             viewModel.loadingChange.dismissDialog.observeInActivity(this, Observer {
                 dismissLoading()
             })
+            viewModel.loadingChange.toast.observeInActivity(this, Observer {
+                showToast(it)
+            })
         }
     }
 
     fun userDataBinding(isUserDb: Boolean) {
         this.isUserDb = isUserDb
     }
+
     /**
      * 显示提示框
      *
      * @param msg 提示框内容字符串
      */
     open fun showProgressDialog(msg: String) {
-        Log.d("XXXXXXX","111")
         if (!isFinishing) {
             mWaitPorgressDialog!!
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -131,12 +138,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
                 .setCancellable(true)
             mWaitPorgressDialog!!.show()
         }
-
-
     }
 
     open fun showProgressDialog() {
-
         if (!isFinishing) {
             mWaitPorgressDialog!!
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -144,17 +148,29 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
                 .setCancellable(true)
             mWaitPorgressDialog!!.show()
         }
-
-
     }
 
     /**
      * 隐藏提示框
      */
     open fun hideProgressDialog() {
-        Log.d("XXXXXXX","222")
         mWaitPorgressDialog?.dismiss()
     }
+
+    open fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun startActivity(clz: Class<*>) {
+        startActivity(Intent(this, clz))
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart()")
+    }
+
     /**
      * 供子类BaseVmDbActivity 初始化Databinding操作
      */

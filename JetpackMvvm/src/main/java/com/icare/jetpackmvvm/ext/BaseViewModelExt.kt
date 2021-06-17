@@ -230,6 +230,7 @@ suspend fun <T> executeResponse(
             response.isSucces() -> {
                 success(response.getResponseData())
             }
+
             else -> {
                 throw AppException(
                     response.getResponseCode(),

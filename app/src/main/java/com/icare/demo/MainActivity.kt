@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.google.gson.Gson
 import com.icare.demo.databinding.ActivityMainBinding
+import com.icare.jetpackmvvm.ext.parseState
+import com.icare.jetpackmvvm.ext.util.toJson
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>() {
@@ -15,7 +17,6 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
 
     override fun initView(savedInstanceState: Bundle?) {
         addLoadingObserve(requestHomeViewModel)
-
         tvtitle.setLeftOnClickListener({
             requestHomeViewModel.getShareData()
         })
@@ -24,7 +25,11 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
     override fun createObserver() {
         super.createObserver()
         requestHomeViewModel.bannerData.observe(this){
-            Log.d("XXXXXXX",(Gson().toJson(it)))
+            parseState(it, {
+                showToast(Gson().toJson(it))
+            }, {
+               showToast(it.errorMsg)
+            })
         }
     }
 }

@@ -24,6 +24,8 @@ open class BaseViewModel : ViewModel() {
         val showDialog by lazy { EventLiveData<String>() }
         //隐藏
         val dismissDialog by lazy { EventLiveData<Boolean>() }
+
+        val toast by lazy { EventLiveData<String>() }
     }
 
 }

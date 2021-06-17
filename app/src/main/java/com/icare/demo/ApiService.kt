@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface ApiService {
 
     companion object {
-        const val SERVER_URL = "https://wanandroid.com/"
+        const val SERVER_URL = "http://dev.tianxiangyuan-main.zaihukeji.cn/api/"
         const val SERVER_URL1 = "https://wanandroid.com/"
     }
 
@@ -18,8 +18,8 @@ interface ApiService {
     /**
      * 获取banner数据
      */
-    @GET("banner/json")
-    suspend fun getBanner(): ApiResponse<ArrayList<BannerResponse>>
+    @POST("common/sendSms")
+    suspend fun getBanner(): ApiResponse<Any>
 
 
 
