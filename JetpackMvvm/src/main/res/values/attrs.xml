@@ -1,0 +1,37 @@
+<resources>
+
+    <style name="color_dialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <!--标题-->
+    <declare-styleable name="RxTitle">
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="titleVisibility" format="boolean" />
+
+        <attr name="leftText" format="string" />
+        <attr name="leftTextColor" format="color" />
+        <attr name="leftTextSize" format="dimension" />
+        <attr name="leftTextVisibility" format="boolean" />
+
+        <attr name="rightText" format="string" />
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightTextSize" format="dimension" />
+        <attr name="rightTextVisibility" format="boolean" />
+
+        <attr name="leftIcon" format="reference" />
+        <attr name="leftIconVisibility" format="boolean" />
+
+        <attr name="rightIcon" format="reference" />
+        <attr name="rightIconVisibility" format="boolean" />
+    </declare-styleable>
+</resources>

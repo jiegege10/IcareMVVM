@@ -57,4 +57,10 @@ dependencies {
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //动态替换BaseUrl库 使用可参考 https://github.com/JessYanCoding/RetrofitUrlManager
     api 'me.jessyan:retrofit-url-manager:1.4.0'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    api 'com.android.support:multidex:1.0.3'
+    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
 }

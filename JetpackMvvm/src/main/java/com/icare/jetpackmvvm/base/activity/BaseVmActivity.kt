@@ -1,13 +1,18 @@
 package com.icare.jetpackmvvm.base.activity
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.gyf.immersionbar.ImmersionBar
+import com.icare.jetpackmvvm.R
 import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
+import com.kaopiz.kprogresshud.KProgressHUD
 
 /**
  *
@@ -18,7 +23,7 @@ import com.icare.jetpackmvvm.network.manager.NetworkStateManager
  * @updateDate:     6/17/21 11:09 AM
  */
 abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
-
+    val mWaitPorgressDialog by lazy { KProgressHUD.create(this) }
     /**
      * 是否需要使用DataBinding 供子类BaseVmDbActivity修改，用户请慎动
      */
@@ -33,7 +38,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     abstract fun showLoading(message: String = "请求网络中...")
 
     abstract fun dismissLoading()
-
+    var mImmersionBar: ImmersionBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!isUserDb) {
@@ -41,6 +46,13 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
         } else {
             initDataBind()
         }
+        mImmersionBar =
+            ImmersionBar.with(this).statusBarDarkFont(true)
+                .keyboardEnable(true)
+                .statusBarColor(R.color.white)
+                .navigationBarColor(R.color.white)
+                .fitsSystemWindows(true)
+        mImmersionBar!!.init()
         init(savedInstanceState)
     }
 
@@ -89,8 +101,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
      * 将非该Activity绑定的ViewModel添加 loading回调 防止出现请求时不显示 loading 弹窗bug
      * @param viewModels Array<out BaseViewModel>
      */
-    protected fun addLoadingObserve(vararg viewModels: BaseViewModel){
-        viewModels.forEach {viewModel ->
+    protected fun addLoadingObserve(vararg viewModels: BaseViewModel) {
+        viewModels.forEach { viewModel ->
             //显示弹窗
             viewModel.loadingChange.showDialog.observeInActivity(this, Observer {
                 showLoading(it)
@@ -105,7 +117,44 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     fun userDataBinding(isUserDb: Boolean) {
         this.isUserDb = isUserDb
     }
+    /**
+     * 显示提示框
+     *
+     * @param msg 提示框内容字符串
+     */
+    open fun showProgressDialog(msg: String) {
+        Log.d("XXXXXXX","111")
+        if (!isFinishing) {
+            mWaitPorgressDialog!!
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel(msg)
+                .setCancellable(true)
+            mWaitPorgressDialog!!.show()
+        }
 
+
+    }
+
+    open fun showProgressDialog() {
+
+        if (!isFinishing) {
+            mWaitPorgressDialog!!
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("请稍后...")
+                .setCancellable(true)
+            mWaitPorgressDialog!!.show()
+        }
+
+
+    }
+
+    /**
+     * 隐藏提示框
+     */
+    open fun hideProgressDialog() {
+        Log.d("XXXXXXX","222")
+        mWaitPorgressDialog?.dismiss()
+    }
     /**
      * 供子类BaseVmDbActivity 初始化Databinding操作
      */

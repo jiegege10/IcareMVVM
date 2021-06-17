@@ -87,18 +87,22 @@ fun <T> BaseViewModel.request(
     block: suspend () -> BaseResponse<T>,
     resultState: MutableLiveData<ResultState<T>>,
     isShowDialog: Boolean = false,
-    loadingMessage: String = "请求网络中..."
+    loadingMessage: String = "请稍后..."
 ): Job {
     return viewModelScope.launch {
         runCatching {
-            if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
+            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
             //请求体
             block()
         }.onSuccess {
+            loadingChange.dismissDialog.postValue(false)
             resultState.paresResult(it)
+
         }.onFailure {
+            loadingChange.dismissDialog.postValue(false)
             it.message?.loge()
             resultState.paresException(it)
+
         }
     }
 }
@@ -118,13 +122,15 @@ fun <T> BaseViewModel.requestNoCheck(
 ): Job {
     return viewModelScope.launch {
         runCatching {
-            if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
+            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
             //请求体
             block()
         }.onSuccess {
+            loadingChange.dismissDialog.postValue(false)
             resultState.paresResult(it)
         }.onFailure {
             it.message?.loge()
+            loadingChange.dismissDialog.postValue(false)
             resultState.paresException(it)
         }
     }
