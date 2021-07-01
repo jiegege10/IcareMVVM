@@ -39,7 +39,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     abstract fun initView(savedInstanceState: Bundle?)
 
-    abstract fun showLoading(message: String = "请求网络中...")
+    abstract fun showLoading(message: String = "请求中...")
 
     abstract fun dismissLoading()
     var mImmersionBar: ImmersionBar? = null
@@ -87,6 +87,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
      */
     abstract fun createObserver()
 
+    abstract fun tokenExpiredObserver(message: String)
+
     /**
      * 注册UI 事件
      */
@@ -99,6 +101,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
         mViewModel.loadingChange.dismissDialog.observeInActivity(this, Observer {
             dismissLoading()
         })
+        mViewModel.tokenExpiredChange.observeInActivity(this){
+            tokenExpiredObserver(it)
+        }
     }
 
     /**
@@ -124,6 +129,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     fun userDataBinding(isUserDb: Boolean) {
         this.isUserDb = isUserDb
     }
+
 
     /**
      * 显示提示框

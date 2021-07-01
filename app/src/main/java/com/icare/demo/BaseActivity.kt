@@ -18,7 +18,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     abstract override fun layoutId(): Int
 
     abstract override fun initView(savedInstanceState: Bundle?)
+    override fun tokenExpiredObserver(message: String) {
+        Log.d("XXXXXXX","过期了:$message")
 
+    }
     /**
      * 创建liveData观察者
      */

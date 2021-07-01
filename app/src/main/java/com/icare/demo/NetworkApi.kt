@@ -48,12 +48,7 @@ class NetworkApi : BaseNetworkApi() {
         }
 
         builder.apply {
-            //设置缓存配置 缓存最大10M
-            cache(Cache(File(appContext.cacheDir, "cxk_cache"), 10 * 1024 * 1024))
-            //添加Cookies自动持久化
-            cookieJar(cookieJar)
             addInterceptor(httpLoggingInterceptor)
-            //示例：添加公共heads 注意要设置在日志拦截器之前，不然Log中会不显示head信息
             //超时时间 连接、读、写
             connectTimeout(10, TimeUnit.SECONDS)
             readTimeout(5, TimeUnit.SECONDS)
@@ -71,12 +66,9 @@ class NetworkApi : BaseNetworkApi() {
             addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         }
     }
-
-    val cookieJar: PersistentCookieJar by lazy {
-        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(appContext))
     }
 
-}
+
 
 
 

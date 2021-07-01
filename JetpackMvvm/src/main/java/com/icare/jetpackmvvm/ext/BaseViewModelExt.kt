@@ -95,9 +95,21 @@ fun <T> BaseViewModel.request(
             //请求体
             block()
         }.onSuccess {
+            //网络请求成功 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
-            resultState.paresResult(it)
-
+            runCatching {
+                //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
+                executeResponse(it, { t ->
+                    resultState.paresResult(t)
+                }, { t ->
+                    tokenExpiredChange.postValue(t)
+                })
+            }.onFailure { e ->
+                //打印错误消息
+                e.message?.loge()
+                //失败回调
+                error(ExceptionHandle.handleException(e))
+            }
         }.onFailure {
             loadingChange.dismissDialog.postValue(false)
             it.message?.loge()
@@ -128,6 +140,7 @@ fun <T> BaseViewModel.requestNoCheck(
         }.onSuccess {
             loadingChange.dismissDialog.postValue(false)
             resultState.paresResult(it)
+
         }.onFailure {
             it.message?.loge()
             loadingChange.dismissDialog.postValue(false)
@@ -162,8 +175,11 @@ fun <T> BaseViewModel.request(
             loadingChange.dismissDialog.postValue(false)
             runCatching {
                 //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
-                executeResponse(it) { t -> success(t)
-                }
+                executeResponse(it, { t ->
+                    success(t)
+                }, { t ->
+                    tokenExpiredChange.postValue(t)
+                })
             }.onFailure { e ->
                 //打印错误消息
                 e.message?.loge()
@@ -223,14 +239,17 @@ fun <T> BaseViewModel.requestNoCheck(
  */
 suspend fun <T> executeResponse(
     response: BaseResponse<T>,
-    success: suspend CoroutineScope.(T) -> Unit
+    success: suspend CoroutineScope.(T) -> Unit,
+    loginError: suspend CoroutineScope.(String) -> Unit
 ) {
     coroutineScope {
         when {
-            response.isSucces() -> {
+            response.isSuccess() -> {
                 success(response.getResponseData())
             }
-
+            response.isLoginError() -> {
+                loginError(response.getResponseMsg())
+            }
             else -> {
                 throw AppException(
                     response.getResponseCode(),

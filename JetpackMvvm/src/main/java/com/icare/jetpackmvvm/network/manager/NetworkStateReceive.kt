@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import com.icare.jetpackmvvm.network.NetworkUtil
+import com.icare.jetpackmvvm.util.RxNetworkUtil
 
 /**
  * 作者　: hegaojian
@@ -16,7 +16,7 @@ class NetworkStateReceive : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ConnectivityManager.CONNECTIVITY_ACTION) {
             if(!isInit){
-                if (!NetworkUtil.isNetworkAvailable(context)) {
+                if (!RxNetworkUtil.isNetworkAvailable(context)) {
                     //收到没有网络时判断之前的值是不是有网络，如果有网络才提示通知 ，防止重复通知
                     NetworkStateManager.instance.mNetworkStateCallback.value?.let {
                         if (it.isSuccess) {

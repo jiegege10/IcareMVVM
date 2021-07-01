@@ -28,6 +28,7 @@ import android.view.View
 import android.widget.*
 import com.icare.jetpackmvvm.R
 import com.icare.jetpackmvvm.util.CommonUtil
+import com.icare.jetpackmvvm.util.RxKeyboardUtil
 
 class RxTitle : FrameLayout {
 
@@ -230,7 +231,7 @@ class RxTitle : FrameLayout {
         mTvTitle?.setMinTextSize(37f)
         try {
             RxTextAutoZoom.setNormalization(getContext() as Activity, mRootLayout!!, mTvTitle!!)
-           CommonUtil. hideSoftInput((getContext() as Activity))
+           RxKeyboardUtil. hideSoftInput((getContext() as Activity))
         } catch (e: Exception) {
             e.printStackTrace()
         }

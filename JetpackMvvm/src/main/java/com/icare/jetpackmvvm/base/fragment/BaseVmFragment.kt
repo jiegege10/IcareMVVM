@@ -1,11 +1,13 @@
 package com.icare.jetpackmvvm.base.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -15,6 +17,7 @@ import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
+import com.kaopiz.kprogresshud.KProgressHUD
 
 
 /**
@@ -26,7 +29,7 @@ import com.icare.jetpackmvvm.network.manager.NetworkStateManager
  * @updateDate:     6/17/21 11:10 AM
  */
 abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
-
+    val mWaitPorgressDialog by lazy { KProgressHUD.create(requireContext()) }
     private val handler = Handler()
 
     //是否第一次加载
@@ -97,13 +100,22 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
         onVisible()
     }
 
+    open fun showToast(msg: String) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun startActivity(clz: Class<*>) {
+        startActivity(Intent(requireContext(), clz))
+
+    }
+
     /**
      * 是否需要懒加载
      */
     private fun onVisible() {
         if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
             // 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿
-            handler.postDelayed( {
+            handler.postDelayed({
                 lazyLoadData()
                 //在Fragment中，只有懒加载过了才能开启网络变化监听
                 NetworkStateManager.instance.mNetworkStateCallback.observeInFragment(
@@ -115,7 +127,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
                         }
                     })
                 isFirst = false
-            },lazyLoadTime())
+            }, lazyLoadTime())
         }
     }
 
@@ -127,6 +139,35 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     abstract fun showLoading(message: String = "请求网络中...")
 
     abstract fun dismissLoading()
+
+
+    /**
+     * 显示提示框
+     *
+     * @param msg 提示框内容字符串
+     */
+    open fun showProgressDialog(msg: String) {
+        mWaitPorgressDialog!!
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel(msg)
+            .setCancellable(true)
+        mWaitPorgressDialog!!.show()
+    }
+
+    open fun showProgressDialog() {
+        mWaitPorgressDialog!!
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("请稍后...")
+            .setCancellable(true)
+        mWaitPorgressDialog!!.show()
+    }
+
+    /**
+     * 隐藏提示框
+     */
+    open fun hideProgressDialog() {
+        mWaitPorgressDialog?.dismiss()
+    }
 
     /**
      * 注册 UI 事件

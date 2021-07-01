@@ -1,15 +1,21 @@
 package com.icare.jetpackmvvm.util
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.CountDownTimer
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.icare.jetpackmvvm.base.BaseApp
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
@@ -118,53 +124,7 @@ object CommonUtil {
 
     }
 
-    /**
-     * 获取当前进程名
-     */
-    fun getProcessName(pid: Int): String {
-        var reader: BufferedReader? = null
-        try {
-            reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-            var processName = reader!!.readLine()
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim({ it <= ' ' })
-            }
-            return processName
-        } catch (throwable: Throwable) {
-            throwable.printStackTrace()
-        } finally {
-            try {
-                if (reader != null) {
-                    reader!!.close()
-                }
-            } catch (exception: IOException) {
-                exception.printStackTrace()
-            }
-        }
-        return ""
-    }
 
-    /**
-     * 隐藏软键盘
-     */
-    fun hideSoftInput(et: EditText) {
-        val inputMethodManager = et.context
-            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            et.windowToken,
-            InputMethodManager.HIDE_NOT_ALWAYS
-        )
-    }
-    fun hideSoftInput(activity: Activity) {
-        val view = activity.window.peekDecorView()
-        if (view != null) {
-            val inputmanger = activity
-                .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            if (inputmanger.isActive) {
-                inputmanger.hideSoftInputFromWindow(view.windowToken, 0)
-            }
-        }
-    }
     fun getColor(context: Context, @ColorRes id: Int): Int {
         val version = Build.VERSION.SDK_INT
         return if (version >= 23) {
@@ -172,5 +132,45 @@ object CommonUtil {
         } else {
             context.resources.getColor(id)
         }
+    }
+    fun getDrawable(context: Context, @DrawableRes id: Int): Drawable {
+        val version = Build.VERSION.SDK_INT
+        return if (version >= 23) {
+            ContextCompat.getDrawable(context, id)!!
+        } else {
+            context.resources.getDrawable(id)
+        }
+    }
+    @JvmStatic
+    fun getContext(): Context {
+        var context = BaseApp.content
+        if (context != null) {
+            return context
+        }
+        throw NullPointerException("BaseApp.content 获取错误")
+    }
+    /**
+     * 倒计时
+     *
+     * @param textView 控件
+     * @param waitTime 倒计时总时长
+     * @param interval 倒计时的间隔时间
+     * @param hint     倒计时完毕时显示的文字
+     */
+    @JvmStatic
+    fun countDown(textView: TextView, waitTime: Long, interval: Long, hint: String?) {
+        textView.isEnabled = false
+        val timer: CountDownTimer = object : CountDownTimer(waitTime, interval) {
+            @SuppressLint("DefaultLocale")
+            override fun onTick(millisUntilFinished: Long) {
+                textView.text = String.format("剩下 %d S", millisUntilFinished / 1000)
+            }
+
+            override fun onFinish() {
+                textView.isEnabled = true
+                textView.text = hint
+            }
+        }
+        timer.start()
     }
 }

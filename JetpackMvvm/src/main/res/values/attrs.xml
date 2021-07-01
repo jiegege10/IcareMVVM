@@ -34,4 +34,10 @@
         <attr name="rightIcon" format="reference" />
         <attr name="rightIconVisibility" format="boolean" />
     </declare-styleable>
+
+    <!-- PopupWindow 动画从下到上 -->
+    <style name="PopAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
 </resources>

@@ -10,11 +10,9 @@ import com.icare.jetpackmvvm.ext.util.toJson
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>() {
-
     //请求数据ViewModel
     private val requestHomeViewModel: RequestAriticleViewModel by viewModels()
     override fun layoutId(): Int  = R.layout.activity_main
-
     override fun initView(savedInstanceState: Bundle?) {
         addLoadingObserve(requestHomeViewModel)
         tvtitle.setLeftOnClickListener({

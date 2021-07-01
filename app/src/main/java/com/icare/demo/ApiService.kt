@@ -10,17 +10,10 @@ import retrofit2.http.*
 interface ApiService {
 
     companion object {
-        const val SERVER_URL = "http://dev.tianxiangyuan-main.zaihukeji.cn/api/"
-        const val SERVER_URL1 = "https://wanandroid.com/"
+        const val SERVER_URL = "http://shengbaishop.zaihukeji.cn/storage/"
     }
 
-
-    /**
-     * 获取banner数据
-     */
-    @POST("common/sendSms")
-    suspend fun getBanner(): ApiResponse<Any>
-
-
+    @GET("storage/lists")
+    suspend fun getBanner(@Query("search") search: String = ""): ApiResponse<Any>
 
 }

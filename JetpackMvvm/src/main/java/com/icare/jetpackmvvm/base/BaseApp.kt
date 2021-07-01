@@ -1,6 +1,7 @@
 package com.icare.jetpackmvvm.base
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -25,9 +26,13 @@ open class BaseApp : Application(), ViewModelStoreOwner {
     override fun getViewModelStore(): ViewModelStore {
         return mAppViewModelStore
     }
+    companion object{
+         var content: Context? = null
+    }
 
     override fun onCreate() {
         super.onCreate()
+        content = this.applicationContext
         mAppViewModelStore = ViewModelStore()
     }
 
