@@ -2,7 +2,7 @@ package com.icare.jetpackmvvm.network.interceptor.logging
 
 import android.util.Log
 import com.icare.jetpackmvvm.util.CharacterHandler.Companion.jsonFormat
-import com.icare.jetpackmvvm.util.UrlEncoderUtils.Companion.hasUrlEncoded
+import com.icare.jetpackmvvm.util.RxUrlEncoderUtils.Companion.hasUrlEncoded
 import com.icare.jetpackmvvm.util.ZipHelper.Companion.decompressForGzip
 import com.icare.jetpackmvvm.util.ZipHelper.Companion.decompressToStringForZlib
 import okhttp3.*

@@ -17,7 +17,7 @@ class RequestAriticleViewModel : BaseViewModel() {
 
 
     //首页轮播图数据
-    var bannerData: MutableLiveData<ResultState<Any>> = MutableLiveData()
+    var bannerData: MutableLiveData<ResultState<Data>> = MutableLiveData()
 
 
     fun getShareData() {

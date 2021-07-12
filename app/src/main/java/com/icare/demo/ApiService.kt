@@ -10,10 +10,10 @@ import retrofit2.http.*
 interface ApiService {
 
     companion object {
-        const val SERVER_URL = "http://shengbaishop.zaihukeji.cn/storage/"
+        const val SERVER_URL = "https://shengbaishop.zaihukeji.cn/api/"
     }
 
-    @GET("storage/lists")
-    suspend fun getBanner(@Query("search") search: String = ""): ApiResponse<Any>
+    @GET("cookbook/category")
+    suspend fun getBanner(@Query("search") search: String = ""): ApiResponse<Data>
 
 }

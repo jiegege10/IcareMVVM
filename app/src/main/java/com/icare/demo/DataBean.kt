@@ -38,3 +38,29 @@ data class BannerResponse(
 )
 
 
+data class TestEntity(
+    val `data`: Data
+)
+
+data class Data(
+    val hot: List<Hot>,
+    val list: List<Goods>
+)
+
+data class Hot(
+    val id: String,
+    val image: String,
+    val name: String
+)
+
+data class Goods(
+    val id: String,
+    val list: List<X>,
+    val name: String
+)
+
+data class X(
+    val id: String,
+    val image: String,
+    val name: String
+)

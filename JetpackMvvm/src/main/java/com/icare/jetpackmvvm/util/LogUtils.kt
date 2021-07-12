@@ -6,7 +6,7 @@ import com.icare.jetpackmvvm.ext.util.jetpackMvvmLog
 
 
 object LogUtils {
-    private const val DEFAULT_TAG = "JetpackMvvm"
+    private const val DEFAULT_TAG = "ICARE"
     fun debugInfo(tag: String?, msg: String?) {
         if (!jetpackMvvmLog || TextUtils.isEmpty(msg)) {
             return

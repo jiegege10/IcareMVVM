@@ -1,7 +1,7 @@
 package com.icare.jetpackmvvm.util
 
 
-class UrlEncoderUtils private constructor() {
+class RxUrlEncoderUtils private constructor() {
     companion object {
         /**
          * 判断 str 是否已经 URLEncoder.encode() 过

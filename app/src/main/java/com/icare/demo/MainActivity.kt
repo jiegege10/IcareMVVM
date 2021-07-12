@@ -23,10 +23,8 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
     override fun createObserver() {
         super.createObserver()
         requestHomeViewModel.bannerData.observe(this){
-            parseState(it, {
-                showToast(Gson().toJson(it))
-            }, {
-               showToast(it.errorMsg)
+            parseState(it,{
+                Log.d("XXXXXXXX",Gson().toJson(it))
             })
         }
     }

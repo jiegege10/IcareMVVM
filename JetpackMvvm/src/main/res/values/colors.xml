@@ -2,5 +2,9 @@
 <resources>
 
     <color name="white">#ffffff</color>
+    <color name="app_333">#333333</color>
+    <color name="app_666">#666666</color>
+    <color name="app_999">#999999</color>
+    <color name="app_dividing">#F4F4F4</color>
 
 </resources>

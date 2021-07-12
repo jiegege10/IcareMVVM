@@ -15,6 +15,8 @@ import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
 import com.kaopiz.kprogresshud.KProgressHUD
+import me.yokeyword.fragmentation.ISupportActivity
+import me.yokeyword.fragmentation.SupportActivity
 
 /**
  *
@@ -24,7 +26,7 @@ import com.kaopiz.kprogresshud.KProgressHUD
  * @updateUser:     更新者：Mr.He
  * @updateDate:     6/17/21 11:09 AM
  */
-abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
     val mWaitPorgressDialog by lazy { KProgressHUD.create(this) }
     private val TAG: String = this.javaClass.simpleName
 
@@ -136,21 +138,11 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
      *
      * @param msg 提示框内容字符串
      */
-    open fun showProgressDialog(msg: String) {
+    open fun showProgressDialog(msg: String ="请稍后...") {
         if (!isFinishing) {
             mWaitPorgressDialog!!
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel(msg)
-                .setCancellable(true)
-            mWaitPorgressDialog!!.show()
-        }
-    }
-
-    open fun showProgressDialog() {
-        if (!isFinishing) {
-            mWaitPorgressDialog!!
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("请稍后...")
                 .setCancellable(true)
             mWaitPorgressDialog!!.show()
         }
