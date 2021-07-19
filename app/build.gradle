@@ -7,12 +7,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        buildFeatures {
+            dataBinding = true
+        }
+
         applicationId "com.icare.demo"
         minSdkVersion 16
         targetSdkVersion 30
@@ -20,9 +23,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildFeatures {
-        dataBinding = true
     }
 
     buildTypes {

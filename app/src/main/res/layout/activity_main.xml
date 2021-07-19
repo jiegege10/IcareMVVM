@@ -19,11 +19,8 @@
             android:layout_width="match_parent"
             android:layout_marginTop="100dp"
             android:layout_height="50dp"
-            app:title="asadsa" />
-        <com.icare.jetpackmvvm.widget.ClearableEditTextWithIcon
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="123123"/>
+            app:title="1111" />
+
         <TextView
             android:textColor="#333"
             android:layout_width="match_parent"

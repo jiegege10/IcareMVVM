@@ -15,8 +15,6 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * 作者　: hegaojian
- * 时间　: 2019/12/23
  * 描述　: 网络请求构建器，继承BasenetworkApi 并实现setHttpClientBuilder/setRetrofitBuilder方法，
  * 在这里可以添加拦截器，设置构造器可以对Builder做任意操作
  */
@@ -33,6 +31,7 @@ class NetworkApi : BaseNetworkApi() {
             NetworkApi()
         }
     }
+
     /**
      * 实现重写父类的setHttpClientBuilder方法，
      * 在这里可以添加拦截器，可以对 OkHttpClient.Builder 做任意操作
@@ -64,7 +63,7 @@ class NetworkApi : BaseNetworkApi() {
             addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         }
     }
-    }
+}
 
 
 

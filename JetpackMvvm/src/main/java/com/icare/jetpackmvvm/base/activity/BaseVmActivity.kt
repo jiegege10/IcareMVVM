@@ -15,7 +15,6 @@ import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
 import com.kaopiz.kprogresshud.KProgressHUD
-import me.yokeyword.fragmentation.ISupportActivity
 import me.yokeyword.fragmentation.SupportActivity
 
 /**
