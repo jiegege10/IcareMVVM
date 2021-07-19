@@ -43,7 +43,14 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
     abstract fun showLoading(message: String = "请求中...")
 
     abstract fun dismissLoading()
-    var mImmersionBar: ImmersionBar? = null
+    private val mImmersionBar: ImmersionBar by lazy {
+        ImmersionBar.with(this).statusBarDarkFont(true)
+            .keyboardEnable(true)
+            .statusBarColor(R.color.white)
+            .navigationBarColor(R.color.white)
+            .fitsSystemWindows(true)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!isUserDb) {
@@ -51,14 +58,12 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         } else {
             initDataBind()
         }
-        mImmersionBar =
-            ImmersionBar.with(this).statusBarDarkFont(true)
-                .keyboardEnable(true)
-                .statusBarColor(R.color.white)
-                .navigationBarColor(R.color.white)
-                .fitsSystemWindows(true)
-        mImmersionBar!!.init()
+        mImmersionBar.init()
         init(savedInstanceState)
+    }
+
+    open fun setNoStatusBar() {
+        mImmersionBar.transparentStatusBar().fitsSystemWindows(false)?.init()
     }
 
     private fun init(savedInstanceState: Bundle?) {
@@ -102,7 +107,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         mViewModel.loadingChange.dismissDialog.observeInActivity(this, Observer {
             dismissLoading()
         })
-        mViewModel.tokenExpiredChange.observeInActivity(this){
+        mViewModel.tokenExpiredChange.observeInActivity(this) {
             tokenExpiredObserver(it)
         }
     }
@@ -137,7 +142,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
      *
      * @param msg 提示框内容字符串
      */
-    open fun showProgressDialog(msg: String ="请稍后...") {
+    open fun showProgressDialog(msg: String = "请稍后...") {
         if (!isFinishing) {
             mWaitPorgressDialog!!
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)

@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelStoreOwner
  * @updateUser:     更新者：Mr.He
  * @updateDate:     6/17/21 11:11 AM
  */
-open class BaseApp : Application(), ViewModelStoreOwner {
+abstract class BaseApp : Application(), ViewModelStoreOwner {
 
     private lateinit var mAppViewModelStore: ViewModelStore
 
@@ -26,12 +26,17 @@ open class BaseApp : Application(), ViewModelStoreOwner {
     override fun getViewModelStore(): ViewModelStore {
         return mAppViewModelStore
     }
-    companion object{
-         var content: Context? = null
+
+    companion object {
+
+        var content: Context? = null
+
+        var preferenceName: String = "BaseApp"
     }
 
     override fun onCreate() {
         super.onCreate()
+
         content = this.applicationContext
         mAppViewModelStore = ViewModelStore()
     }
