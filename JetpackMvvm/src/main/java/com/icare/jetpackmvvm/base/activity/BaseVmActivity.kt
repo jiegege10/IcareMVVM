@@ -1,14 +1,15 @@
 package com.icare.jetpackmvvm.base.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import com.icare.jetpackmvvm.R
 import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
@@ -43,7 +44,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
     abstract fun showLoading(message: String = "请求中...")
 
     abstract fun dismissLoading()
-    private val mImmersionBar: ImmersionBar by lazy {
+    open val mImmersionBar: ImmersionBar by lazy {
         ImmersionBar.with(this).statusBarDarkFont(true)
             .keyboardEnable(true)
             .statusBarColor(R.color.white)
@@ -73,6 +74,46 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         createObserver()
         NetworkStateManager.instance.mNetworkStateCallback.observeInActivity(this, Observer {
             onNetworkStateChanged(it)
+        })
+    }
+
+    /**
+     * @date: 2021/7/20 2:38 下午
+     * @author: Mr.He
+     * @param 多权限声明
+     * @return
+     */
+    open fun setPermissions(STORAGE: Array<String>, callback: OnPermissionCallback) {
+        XXPermissions.with(this).permission(STORAGE).request(object : OnPermissionCallback {
+            override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                callback.onGranted(permissions, all)
+            }
+
+            override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                callback.onDenied(permissions, never)
+
+            }
+
+        })
+    }
+
+    /**
+     * @date: 2021/7/20 2:38 下午
+     * @author: Mr.He
+     * @param 单权限声明
+     * @return
+     */
+    open fun setPermission(permission: String, callback: OnPermissionCallback) {
+        XXPermissions.with(this).permission(permission).request(object : OnPermissionCallback {
+            override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                callback.onGranted(permissions, all)
+            }
+
+            override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                callback.onDenied(permissions, never)
+
+            }
+
         })
     }
 
@@ -148,7 +189,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel(msg)
                 .setCancellable(true)
-            mWaitPorgressDialog!!.show()
+            mWaitPorgressDialog.show()
         }
     }
 

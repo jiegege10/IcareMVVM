@@ -133,6 +133,7 @@ object CommonUtil {
             context.resources.getColor(id)
         }
     }
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun getDrawable(context: Context, @DrawableRes id: Int): Drawable {
         val version = Build.VERSION.SDK_INT
         return if (version >= 23) {
@@ -161,7 +162,6 @@ object CommonUtil {
     fun countDown(textView: TextView, waitTime: Long, interval: Long, hint: String?) {
         textView.isEnabled = false
         val timer: CountDownTimer = object : CountDownTimer(waitTime, interval) {
-            @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = String.format("剩下 %d S", millisUntilFinished / 1000)
             }

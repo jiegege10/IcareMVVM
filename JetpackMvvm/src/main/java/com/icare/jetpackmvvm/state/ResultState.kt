@@ -5,10 +5,11 @@ import com.icare.jetpackmvvm.network.BaseResponse
 import com.icare.jetpackmvvm.network.ExceptionHandle
 
 /**
- * 作者　: hegaojian
- * 时间　: 2020/4/9
- * 描述　: 自定义结果集封装类
- */
+* @date: 2021/7/20 6:01 下午
+* @author: Mr.He
+* @param 自定义结果集封装类
+* @return
+*/
 sealed class ResultState<out T> {
     companion object {
         fun <T> onAppSuccess(data: T): ResultState<T> = Success(data)

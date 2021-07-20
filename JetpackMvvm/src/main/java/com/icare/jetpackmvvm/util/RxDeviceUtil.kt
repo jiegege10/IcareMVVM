@@ -31,11 +31,11 @@ import java.net.SocketException
 import java.util.*
 
 /**
- * 设备工具类
- *
- * @author tamsiree
- * @date 2016/1/24
- */
+* @date: 2021/7/20 5:59 下午
+* @author: Mr.He
+* @param 设备工具类
+* @return
+*/
 object RxDeviceTool {
     /**
      * 得到屏幕的高

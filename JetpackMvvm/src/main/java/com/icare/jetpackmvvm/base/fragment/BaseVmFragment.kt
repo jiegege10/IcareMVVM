@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.XXPermissions
 import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
@@ -68,7 +70,45 @@ abstract class BaseVmFragment<VM : BaseViewModel> : SupportFragment() {
         registorDefUIChange()
         initData()
     }
+    /**
+     * @date: 2021/7/20 2:38 下午
+     * @author: Mr.He
+     * @param 多权限声明
+     * @return
+     */
+    open fun setPermissions(STORAGE: Array<String>, callback: OnPermissionCallback) {
+        XXPermissions.with(this).permission(STORAGE).request(object : OnPermissionCallback {
+            override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                callback.onGranted(permissions, all)
+            }
 
+            override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                callback.onDenied(permissions, never)
+
+            }
+
+        })
+    }
+
+    /**
+     * @date: 2021/7/20 2:38 下午
+     * @author: Mr.He
+     * @param 单权限声明
+     * @return
+     */
+    open fun setPermission(permission: String, callback: OnPermissionCallback) {
+        XXPermissions.with(this).permission(permission).request(object : OnPermissionCallback {
+            override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
+                callback.onGranted(permissions, all)
+            }
+
+            override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
+                callback.onDenied(permissions, never)
+
+            }
+
+        })
+    }
     /**
      * 网络变化监听 子类重写
      */
