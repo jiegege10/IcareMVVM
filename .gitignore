@@ -13,7 +13,7 @@ gen/
 generated/
 finalOutput/
 projectFilesBackup/
-
+app/
 build.xml
 .txt
 # Local configuration file (sdk path, etc)
