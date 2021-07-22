@@ -15,9 +15,11 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 
 /**
- * @author tamsiree
- * @date 2016/12/23
- */
+* @date: 2021/7/21 2:37 下午
+* @author: Mr.He
+* @param 
+* @return 
+*/
 object RxTextTool {
     /**
      * 获取建造者

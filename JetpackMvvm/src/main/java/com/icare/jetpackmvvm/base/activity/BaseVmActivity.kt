@@ -15,6 +15,7 @@ import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
+import com.icare.jetpackmvvm.util.StyleableToast
 import com.kaopiz.kprogresshud.KProgressHUD
 import me.yokeyword.fragmentation.SupportActivity
 
@@ -201,7 +202,10 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
     }
 
     open fun showToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        StyleableToast.Builder(this)
+            .text(msg)
+            .cornerRadius(5)
+            .show()
     }
 
     fun startActivity(clz: Class<*>) {

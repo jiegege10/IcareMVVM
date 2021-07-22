@@ -31,8 +31,8 @@ class LogInterceptor : Interceptor {
             printLevel == Level.ALL || printLevel != Level.NONE && printLevel == Level.REQUEST
         if (logRequest) {
             //打印请求信息
-            if (request.body != null && isParseable(
-                    request.body!!.contentType()
+            if (request.body() != null && isParseable(
+                    request.body()!!.contentType()
                 )
             ) {
                 mPrinter.printJsonRequest(request, parseParams(request))
@@ -53,7 +53,7 @@ class LogInterceptor : Interceptor {
             throw e
         }
         val t2 = if (logResponse) System.nanoTime() else 0
-        val responseBody = originalResponse.body
+        val responseBody = originalResponse.body()
 
         //打印响应结果
         var bodyString: String? = null
@@ -62,16 +62,16 @@ class LogInterceptor : Interceptor {
         }
         if (logResponse) {
             val segmentList =
-                request.url.encodedPathSegments
-            val header: String = if (originalResponse.networkResponse == null) {
-                originalResponse.headers.toString()
+                request.url().encodedPathSegments()
+            val header: String = if (originalResponse.networkResponse() == null) {
+                originalResponse.headers().toString()
             } else {
-                originalResponse.networkResponse!!.request.headers.toString()
+                originalResponse.networkResponse()!!.request().headers().toString()
             }
-            val code = originalResponse.code
+            val code = originalResponse.code()
             val isSuccessful = originalResponse.isSuccessful
-            val message = originalResponse.message
-            val url = originalResponse.request.url.toString()
+            val message = originalResponse.message()
+            val url = originalResponse.request().url().toString()
             if (responseBody != null && isParseable(responseBody.contentType())) {
                 mPrinter.printJsonResponse(
                     TimeUnit.NANOSECONDS.toMillis(t2 - t1), isSuccessful,

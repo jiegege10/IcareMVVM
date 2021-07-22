@@ -86,6 +86,7 @@ fun <T> BaseVmFragment<*>.parseState(
 fun <T> BaseViewModel.request(
     block: suspend () -> BaseResponse<T>,
     resultState: MutableLiveData<ResultState<T>>,
+    error: (AppException) -> Unit = {},
     isShowDialog: Boolean = false,
     loadingMessage: String = "请稍后..."
 ): Job {
@@ -193,6 +194,36 @@ fun <T> BaseViewModel.request(
             it.message?.loge()
             //失败回调
             error(ExceptionHandle.handleException(it))
+        }
+    }
+}
+
+fun <T> BaseViewModel.request(
+    block: suspend () -> BaseResponse<T>,
+    resultState: MutableLiveData<ResultState<T>>,
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求中..."
+): Job {
+    //如果需要弹窗 通知Activity/fragment弹窗
+    return viewModelScope.launch {
+        runCatching {
+            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
+            //请求体
+            block()
+        }.onSuccess {
+            //网络请求成功 关闭弹窗
+            loadingChange.dismissDialog.postValue(false)
+            if (it.isLoginError()) {
+                tokenExpiredChange.postValue(it.getResponseMsg())
+            }
+            resultState.paresResult(it)
+        }.onFailure {
+            //网络请求异常 关闭弹窗
+            loadingChange.dismissDialog.postValue(false)
+            //打印错误消息
+            it.message?.loge()
+            //失败回调
+            resultState.paresException(it)
         }
     }
 }
