@@ -19,7 +19,11 @@ import android.os.Parcelable
  * @updateRemark:   更新说明：
  * @version:        1.0
  **/
-
+data class CodeEntity(
+    val callId: String,
+    val requestId: String,
+    val ticket: String
+)
 
 data class CityEntity(
     val code: String,

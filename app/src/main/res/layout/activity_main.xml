@@ -14,6 +14,15 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
+        <com.icare.jetpackmvvm.widget.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1231"
+            app:shape_solidColor="@color/app_666"
+            app:shape_strokeColor="#f0f"
+            app:shape_strokeWidth="2dp"
+            app:shape_radius="@dimen/dp_10"
+            />
 
         <com.icare.jetpackmvvm.widget.RxTitle
             android:id="@+id/tvtitle"

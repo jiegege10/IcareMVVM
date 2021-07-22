@@ -7,6 +7,7 @@ import android.os.Message
 import android.util.Log
 import androidx.activity.viewModels
 import com.google.gson.Gson
+import com.hjq.permissions.OnPermissionCallback
 import com.icare.demo.databinding.ActivityMainBinding
 import com.icare.jetpackmvvm.base.BaseApp
 import com.icare.jetpackmvvm.base.activity.BaseVmActivity
@@ -29,16 +30,19 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
     override fun initView(savedInstanceState: Bundle?) {
         addLoadingObserve(requestHomeViewModel)
         tvtitle.setLeftOnClickListener {
-            requestHomeViewModel.getShareData()
+
+
         }
+        tvtitle.setRightIcon(R.mipmap.icon_delete_gray)
+        tvtitle.setRightIconVisibility(true)
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
-
+            try {
+                requestHomeViewModel.getShareData()
+            }catch (e:Exception){
+                Log.e("XXXXXXXXX",e.toString())
+            }
         }
-
-        Log.d("XXXXX",   BaseApp.preferenceName )
-        Log.d("XXXXX",  AAA.toString() )
-        AAA = true
     }
 
     override fun createObserver() {
@@ -46,6 +50,8 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         requestHomeViewModel.bannerData.observe(this) {
             parseState(it, {
                 Log.d("XXXXXXXX", Gson().toJson(it))
+            },{
+                showToast(it.errorMsg)
             })
         }
     }

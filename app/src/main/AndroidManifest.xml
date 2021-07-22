@@ -6,6 +6,7 @@
     <application
         android:allowBackup="true"
         android:name=".AA"
+
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:maxAspectRatio="2.4"

@@ -38,14 +38,15 @@ class NetworkApi : BaseNetworkApi() {
      */
     override fun setHttpClientBuilder(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
+//        if (BuildConfig.DEBUG) {
+//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+//        } else {
+//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
+//        }
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         builder.apply {
             addInterceptor(httpLoggingInterceptor)
+            addInterceptor(ResponseBodyInterceptor())
             //超时时间 连接、读、写
             connectTimeout(10, TimeUnit.SECONDS)
             readTimeout(5, TimeUnit.SECONDS)
