@@ -53,7 +53,7 @@ dependencies {
     api 'androidx.navigation:navigation-runtime-ktx:2.3.5'
     //retrofit
     api "com.squareup.retrofit2:retrofit:2.9.0"
-
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     api "com.squareup.retrofit2:converter-gson:2.9.0"
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     api 'me.jessyan:retrofit-url-manager:1.4.0'
@@ -68,4 +68,5 @@ dependencies {
     api 'com.github.bumptech.glide:okhttp3-integration:4.12.0'
     api 'me.yokeyword:fragmentationx:1.0.2'
     api 'com.github.getActivity:XXPermissions:11.6'
+    api 'com.alibaba:fastjson:1.2.62'
 }

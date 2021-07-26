@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 /**
@@ -51,5 +53,36 @@ public final class Utils {
 
     static boolean isRTL() {
         return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL;
+    }
+
+    public static boolean mkdirs(File directory) {
+        try {
+            forceMkdir(directory);
+            return true;
+        } catch (IOException e){
+        }
+        return false;
+    }
+    public static void forceMkdir(File directory) throws IOException {
+        if (directory.exists()) {
+            if (!directory.isDirectory()) {
+                String message =
+                        "File "
+                                + directory
+                                + " exists and is "
+                                + "not a directory. Unable to create directory.";
+                throw new IOException(message);
+            }
+        } else {
+            if (!directory.mkdirs()) {
+                // Double-check that some other thread or process hasn't made
+                // the directory in the background
+                if (!directory.isDirectory()) {
+                    String message =
+                            "Unable to create directory " + directory;
+                    throw new IOException(message);
+                }
+            }
+        }
     }
 }

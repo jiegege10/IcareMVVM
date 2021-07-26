@@ -16,9 +16,13 @@ import com.icare.jetpackmvvm.ext.parseState
 import com.icare.jetpackmvvm.ext.setSingleClickListener
 import com.icare.jetpackmvvm.ext.util.toJson
 import com.icare.jetpackmvvm.network.manager.NetState
+import com.icare.jetpackmvvm.util.LogUtils
 import com.icare.jetpackmvvm.util.Preference
+import com.icare.jetpackmvvm.util.download.FileDownloadCallback
+import com.icare.jetpackmvvm.util.download.HttpRequest
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
+import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -37,11 +41,32 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         tvtitle.setRightIconVisibility(true)
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
-            try {
-                requestHomeViewModel.getShareData()
-            }catch (e:Exception){
-                Log.e("XXXXXXXXX",e.toString())
-            }
+//            try {
+//                requestHomeViewModel.getShareData()
+//            }catch (e:Exception){
+//                Log.e("XXXXXXXXX",e.toString())
+//            }
+            HttpRequest.download(this,"https://app.pcpsoo.com//uploads//shops//20210322//8530ea5f14cfa8d82d5342057bb3b575.jpg",
+                File("/sdcard/xx.png"),
+                object :FileDownloadCallback(){
+                    override fun onStart() {
+                        super.onStart()
+                    }
+
+                    override fun onDone() {
+                        super.onDone()
+                        LogUtils.debugInfo("下载完成")
+                    }
+
+                    override fun onFailure() {
+                        super.onFailure()
+                    }
+
+                    override fun onProgress(progress: Int, networkSpeed: Long) {
+                        super.onProgress(progress, networkSpeed)
+                        LogUtils.debugInfo("下载中：$progress")
+                    }
+                })
         }
     }
 
@@ -50,8 +75,6 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         requestHomeViewModel.bannerData.observe(this) {
             parseState(it, {
                 Log.d("XXXXXXXX", Gson().toJson(it))
-            },{
-                showToast(it.errorMsg)
             })
         }
     }

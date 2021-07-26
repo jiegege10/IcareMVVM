@@ -23,6 +23,8 @@ class RequestAriticleViewModel : BaseViewModel() {
 
     fun getShareData() {
         var map = HashMap<String,Any>()
+        tokenExpiredChange.postValue("")
+
         request(
             { apiService.sendSMS(map) }//请求体
             , bannerData,//请求的返回结果，请求成功与否都会改变该值，在Activity或fragment中监听回调结果，具体可看loginActivity中的回调

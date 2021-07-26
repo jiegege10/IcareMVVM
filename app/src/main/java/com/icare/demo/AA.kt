@@ -1,6 +1,11 @@
 package com.icare.demo
 
 import com.icare.jetpackmvvm.base.BaseApp
+import com.icare.jetpackmvvm.util.download.OkHttpFinal
+import com.icare.jetpackmvvm.util.download.OkHttpFinalConfiguration
+import okhttp3.Headers
+import okhttp3.Interceptor
+import java.util.*
 
 /**
  * +----------------------------------------------------------------------
@@ -18,9 +23,11 @@ import com.icare.jetpackmvvm.base.BaseApp
  * @updateRemark:   更新说明：
  * @version:        1.0
  **/
-class AA :BaseApp() {
+class AA : BaseApp() {
     override fun onCreate() {
         super.onCreate()
+
+//        OkHttpFinal.getInstance().init(OkHttpFinalConfiguration.Builder().build())
         preferenceName = "123123"
     }
 }
