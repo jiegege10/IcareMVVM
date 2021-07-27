@@ -4,6 +4,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
+import com.icare.demo.a.HeaderInterceptor
 import com.icare.jetpackmvvm.base.appContext
 import com.icare.jetpackmvvm.network.BaseNetworkApi
 import okhttp3.Cache
@@ -46,6 +47,7 @@ class NetworkApi : BaseNetworkApi() {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         builder.apply {
             addInterceptor(httpLoggingInterceptor)
+            addInterceptor(HeaderInterceptor())
             addInterceptor(ResponseBodyInterceptor())
             //超时时间 连接、读、写
             connectTimeout(10, TimeUnit.SECONDS)

@@ -42,31 +42,31 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
 //            try {
-//                requestHomeViewModel.getShareData()
+                requestHomeViewModel.getShareData()
 //            }catch (e:Exception){
 //                Log.e("XXXXXXXXX",e.toString())
 //            }
-            HttpRequest.download(this,"https://app.pcpsoo.com//uploads//shops//20210322//8530ea5f14cfa8d82d5342057bb3b575.jpg",
-                File("/sdcard/xx.png"),
-                object :FileDownloadCallback(){
-                    override fun onStart() {
-                        super.onStart()
-                    }
-
-                    override fun onDone() {
-                        super.onDone()
-                        LogUtils.debugInfo("下载完成")
-                    }
-
-                    override fun onFailure() {
-                        super.onFailure()
-                    }
-
-                    override fun onProgress(progress: Int, networkSpeed: Long) {
-                        super.onProgress(progress, networkSpeed)
-                        LogUtils.debugInfo("下载中：$progress")
-                    }
-                })
+//            HttpRequest.download(this,"https://app.pcpsoo.com//uploads//shops//20210322//8530ea5f14cfa8d82d5342057bb3b575.jpg",
+//                File("/sdcard/xx.png"),
+//                object :FileDownloadCallback(){
+//                    override fun onStart() {
+//                        super.onStart()
+//                    }
+//
+//                    override fun onDone() {
+//                        super.onDone()
+//                        LogUtils.debugInfo("下载完成")
+//                    }
+//
+//                    override fun onFailure() {
+//                        super.onFailure()
+//                    }
+//
+//                    override fun onProgress(progress: Int, networkSpeed: Long) {
+//                        super.onProgress(progress, networkSpeed)
+//                        LogUtils.debugInfo("下载中：$progress")
+//                    }
+//                })
         }
     }
 

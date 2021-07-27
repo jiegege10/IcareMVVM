@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.databinding.ViewDataBinding
 import com.icare.jetpackmvvm.base.activity.BaseVmDbActivity
 import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.icare.jetpackmvvm.util.LogUtils
 
 /**
  * 时间　: 2019/12/21
@@ -18,6 +19,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     abstract override fun initView(savedInstanceState: Bundle?)
     override fun tokenExpiredObserver(message: String) {
+
+            showToast(message  )
 
     }
     /**

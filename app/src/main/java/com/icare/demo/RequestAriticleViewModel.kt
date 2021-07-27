@@ -18,18 +18,16 @@ class RequestAriticleViewModel : BaseViewModel() {
 
 
     //首页轮播图数据
-    var bannerData: MutableLiveData<ResultState<CodeEntity>> = MutableLiveData()
+    var bannerData: MutableLiveData<ResultState<Any>> = MutableLiveData()
 
 
     fun getShareData() {
         var map = HashMap<String,Any>()
-        tokenExpiredChange.postValue("")
+//        tokenExpiredChange.postValue("")
 
         request(
             { apiService.sendSMS(map) }//请求体
             , bannerData,//请求的返回结果，请求成功与否都会改变该值，在Activity或fragment中监听回调结果，具体可看loginActivity中的回调
-            true,//是否显示等待框，，默认false不显示 可以默认不传
-            "请求中..."//等待框内容，可以默认不填请求网络中...
         )
 //        request({ apiService.sendSMS(map)}, {
 //

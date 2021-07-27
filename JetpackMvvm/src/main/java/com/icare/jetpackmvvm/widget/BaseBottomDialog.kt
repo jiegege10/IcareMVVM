@@ -4,17 +4,14 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.icare.jetpackmvvm.R
-
 abstract class BaseBottomDialog(mContext: Context) : Dialog(
     mContext, R.style.color_dialog
 ) {
     protected abstract fun init()
     protected abstract fun getLayout(): Int
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         init()

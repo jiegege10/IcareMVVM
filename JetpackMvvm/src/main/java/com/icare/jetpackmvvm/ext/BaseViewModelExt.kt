@@ -76,49 +76,7 @@ fun <T> BaseVmFragment<*>.parseState(
 }
 
 
-/**
- * net request 不校验请求结果数据是否是成功
- * @param block 请求体方法
- * @param resultState 请求回调的ResultState数据
- * @param isShowDialog 是否显示加载框
- * @param loadingMessage 加载框提示内容
- */
-fun <T> BaseViewModel.request(
-    block: suspend () -> BaseResponse<T>,
-    resultState: MutableLiveData<ResultState<T>>,
-    error: (AppException) -> Unit = {},
-    isShowDialog: Boolean = false,
-    loadingMessage: String = "请稍后..."
-): Job {
-    return viewModelScope.launch {
-        runCatching {
-            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
-            //请求体
-            block()
-        }.onSuccess {
-            //网络请求成功 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
-            runCatching {
-                //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
-                executeResponse(it, { t ->
-                    resultState.paresResult(t)
-                }, { t ->
-                    tokenExpiredChange.postValue(t)
-                })
-            }.onFailure { e ->
-                //打印错误消息
-                e.message?.loge()
-                //失败回调
-                error(ExceptionHandle.handleException(e))
-            }
-        }.onFailure {
-            loadingChange.dismissDialog.postValue(false)
-            it.message?.loge()
-            resultState.paresException(it)
 
-        }
-    }
-}
 
 /**
  * net request 不校验请求结果数据是否是成功
@@ -135,21 +93,49 @@ fun <T> BaseViewModel.requestNoCheck(
 ): Job {
     return viewModelScope.launch {
         runCatching {
-            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
+            if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
             //请求体
             block()
         }.onSuccess {
-            loadingChange.dismissDialog.postValue(false)
             resultState.paresResult(it)
-
         }.onFailure {
             it.message?.loge()
-            loadingChange.dismissDialog.postValue(false)
             resultState.paresException(it)
         }
     }
 }
 
+/**
+ * net request 不校验请求结果数据是否是成功
+ * @param block 请求体方法
+ * @param resultState 请求回调的ResultState数据
+ * @param isShowDialog 是否显示加载框
+ * @param loadingMessage 加载框提示内容
+ */
+fun <T> BaseViewModel.request(
+    block: suspend () -> BaseResponse<T>,
+    resultState: MutableLiveData<ResultState<T>>,
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求网络中..."
+): Job {
+    return viewModelScope.launch {
+        runCatching {
+            if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
+            //请求体
+            block()
+        }.onSuccess {
+            if (it.isLoginError()){
+                tokenExpiredChange.postValue(it.getResponseMsg())
+            }else{
+                resultState.paresResult(it)
+            }
+
+        }.onFailure {
+            it.message?.loge()
+            resultState.paresException(it)
+        }
+    }
+}
 /**
  * 过滤服务器结果，失败抛异常
  * @param block 请求体方法，必须要用suspend关键字修饰
@@ -176,10 +162,10 @@ fun <T> BaseViewModel.request(
             loadingChange.dismissDialog.postValue(false)
             runCatching {
                 //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
-                executeResponse(it, { t ->
-                    success(t)
-                }, { t ->
-                    tokenExpiredChange.postValue(t)
+                executeResponse(it,{
+                    success(it)
+                },{
+                    tokenExpiredChange.postValue("")
                 })
             }.onFailure { e ->
                 //打印错误消息
@@ -194,36 +180,6 @@ fun <T> BaseViewModel.request(
             it.message?.loge()
             //失败回调
             error(ExceptionHandle.handleException(it))
-        }
-    }
-}
-
-fun <T> BaseViewModel.request(
-    block: suspend () -> BaseResponse<T>,
-    resultState: MutableLiveData<ResultState<T>>,
-    isShowDialog: Boolean = false,
-    loadingMessage: String = "请求中..."
-): Job {
-    //如果需要弹窗 通知Activity/fragment弹窗
-    return viewModelScope.launch {
-        runCatching {
-            if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
-            //请求体
-            block()
-        }.onSuccess {
-            //网络请求成功 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
-            if (it.isLoginError()) {
-                tokenExpiredChange.postValue(it.getResponseMsg())
-            }
-            resultState.paresResult(it)
-        }.onFailure {
-            //网络请求异常 关闭弹窗
-            loadingChange.dismissDialog.postValue(false)
-            //打印错误消息
-            it.message?.loge()
-            //失败回调
-            resultState.paresException(it)
         }
     }
 }
@@ -271,7 +227,7 @@ fun <T> BaseViewModel.requestNoCheck(
 suspend fun <T> executeResponse(
     response: BaseResponse<T>,
     success: suspend CoroutineScope.(T) -> Unit,
-    loginError: suspend CoroutineScope.(String) -> Unit
+    error: suspend CoroutineScope.(T) -> Unit
 ) {
     coroutineScope {
         when {
@@ -279,7 +235,7 @@ suspend fun <T> executeResponse(
                 success(response.getResponseData())
             }
             response.isLoginError() -> {
-                loginError(response.getResponseMsg())
+                error(response.getResponseData())
             }
             else -> {
                 throw AppException(

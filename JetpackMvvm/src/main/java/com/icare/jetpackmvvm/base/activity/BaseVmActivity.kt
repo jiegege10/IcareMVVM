@@ -15,6 +15,7 @@ import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
+import com.icare.jetpackmvvm.util.LogUtils
 import com.icare.jetpackmvvm.util.StyleableToast
 import com.kaopiz.kprogresshud.KProgressHUD
 import me.yokeyword.fragmentation.SupportActivity
@@ -150,6 +151,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
             dismissLoading()
         })
         mViewModel.tokenExpiredChange.observeInActivity(this) {
+            LogUtils.debugInfo("XXXXXXXX  tokenExpiredChange")
             tokenExpiredObserver(it)
         }
     }
