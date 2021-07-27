@@ -11,6 +11,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.icare.jetpackmvvm.R
+import com.icare.jetpackmvvm.base.AccountExceptionEntity
 import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
@@ -19,6 +20,9 @@ import com.icare.jetpackmvvm.util.LogUtils
 import com.icare.jetpackmvvm.util.StyleableToast
 import com.kaopiz.kprogresshud.KProgressHUD
 import me.yokeyword.fragmentation.SupportActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  *
@@ -54,8 +58,25 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
             .fitsSystemWindows(true)
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun accountException(bean: AccountExceptionEntity) {
+        if (bean.reRegister) {
+            EventBus.getDefault().unregister(this)
+            tokenExpiredObserver(bean.mag)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this)
+        }
         if (!isUserDb) {
             setContentView(layoutId())
         } else {
@@ -150,10 +171,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         mViewModel.loadingChange.dismissDialog.observeInActivity(this, Observer {
             dismissLoading()
         })
-        mViewModel.tokenExpiredChange.observeInActivity(this) {
-            LogUtils.debugInfo("XXXXXXXX  tokenExpiredChange")
-            tokenExpiredObserver(it)
-        }
+
     }
 
     /**

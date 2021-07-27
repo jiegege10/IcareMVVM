@@ -2,6 +2,7 @@ package com.icare.jetpackmvvm.ext
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.icare.jetpackmvvm.base.AccountExceptionEntity
 import kotlinx.coroutines.*
 import com.icare.jetpackmvvm.base.activity.BaseVmActivity
 import com.icare.jetpackmvvm.base.fragment.BaseVmFragment
@@ -13,6 +14,7 @@ import com.icare.jetpackmvvm.network.ExceptionHandle
 import com.icare.jetpackmvvm.state.ResultState
 import com.icare.jetpackmvvm.state.paresException
 import com.icare.jetpackmvvm.state.paresResult
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -76,8 +78,6 @@ fun <T> BaseVmFragment<*>.parseState(
 }
 
 
-
-
 /**
  * net request 不校验请求结果数据是否是成功
  * @param block 请求体方法
@@ -124,9 +124,9 @@ fun <T> BaseViewModel.request(
             //请求体
             block()
         }.onSuccess {
-            if (it.isLoginError()){
-                tokenExpiredChange.postValue(it.getResponseMsg())
-            }else{
+            if (it.isLoginError()) {
+                EventBus.getDefault().post(AccountExceptionEntity(true, it.getResponseMsg()))
+            } else {
                 resultState.paresResult(it)
             }
 
@@ -136,6 +136,7 @@ fun <T> BaseViewModel.request(
         }
     }
 }
+
 /**
  * 过滤服务器结果，失败抛异常
  * @param block 请求体方法，必须要用suspend关键字修饰
@@ -162,11 +163,9 @@ fun <T> BaseViewModel.request(
             loadingChange.dismissDialog.postValue(false)
             runCatching {
                 //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
-                executeResponse(it,{
+                executeResponse(it) {
                     success(it)
-                },{
-                    tokenExpiredChange.postValue("")
-                })
+                }
             }.onFailure { e ->
                 //打印错误消息
                 e.message?.loge()
@@ -227,7 +226,6 @@ fun <T> BaseViewModel.requestNoCheck(
 suspend fun <T> executeResponse(
     response: BaseResponse<T>,
     success: suspend CoroutineScope.(T) -> Unit,
-    error: suspend CoroutineScope.(T) -> Unit
 ) {
     coroutineScope {
         when {
@@ -235,7 +233,7 @@ suspend fun <T> executeResponse(
                 success(response.getResponseData())
             }
             response.isLoginError() -> {
-                error(response.getResponseData())
+                EventBus.getDefault().post(AccountExceptionEntity(true, response.getResponseMsg()))
             }
             else -> {
                 throw AppException(

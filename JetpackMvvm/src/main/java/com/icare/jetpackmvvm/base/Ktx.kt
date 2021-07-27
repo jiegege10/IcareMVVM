@@ -21,7 +21,7 @@ import com.icare.jetpackmvvm.network.manager.NetworkStateReceive
  */
 
 val appContext: Application by lazy { Ktx.app }
-
+data class AccountExceptionEntity(var reRegister: Boolean,var mag:String)
 class Ktx : ContentProvider() {
 
     companion object {

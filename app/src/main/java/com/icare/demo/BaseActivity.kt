@@ -19,7 +19,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     abstract override fun initView(savedInstanceState: Bundle?)
     override fun tokenExpiredObserver(message: String) {
-
             showToast(message  )
 
     }
