@@ -8,4 +8,8 @@
     <color name="app_dividing">#F4F4F4</color>
     <color name="default_background_color">#cc555555</color>
     <color name="default_text_color">#ffffff</color>
+
+    <color name="kprogresshud_grey_color">#449E9E9E</color>
+    <color name="kprogresshud_default_color">#b1000000</color>
+
 </resources>

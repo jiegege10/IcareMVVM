@@ -173,13 +173,13 @@ class RxTitle : FrameLayout {
             //左边字体颜色
             mLeftTextColor = a.getColor(R.styleable.RxTitle_leftTextColor, Color.parseColor("#333333"))
             //左侧标题字体大小
-            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, CommonUtil. dp2px(context, 8f))
+            mLeftTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_leftTextSize, CommonUtil. dp2px(context, 14f))
             mLeftTextVisibility = a.getBoolean(R.styleable.RxTitle_leftTextVisibility, false)
             mRightText = a.getString(R.styleable.RxTitle_rightText)
             //右边字体颜色
             mRightTextColor = a.getColor(R.styleable.RxTitle_rightTextColor, Color.parseColor("#333333"))
             //标题字体大小
-            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, CommonUtil. dp2px(context, 8f))
+            mRightTextSize = a.getDimensionPixelSize(R.styleable.RxTitle_rightTextSize, CommonUtil. dp2px(context, 14f))
             mRightTextVisibility = a.getBoolean(R.styleable.RxTitle_rightTextVisibility, false)
         } finally {
             //回收这个对象

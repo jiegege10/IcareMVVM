@@ -3,6 +3,7 @@ package com.icare.jetpackmvvm.widget
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.WindowManager
 import com.icare.jetpackmvvm.R
 
 abstract class BaseDialog(mContext: Context) : Dialog(

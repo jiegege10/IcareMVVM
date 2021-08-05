@@ -105,6 +105,7 @@ class ShapeEditText @JvmOverloads constructor(
 
     override fun setStartColor(color: Int): ShapeEditText {
         mStartColor = color
+
         return this
     }
 

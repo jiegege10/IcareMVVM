@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1231"
-            app:shape_solidColor="@color/app_666"
+            android:id="@+id/tv_text"
             app:shape_strokeColor="#f0f"
             app:shape_strokeWidth="2dp"
             app:shape_radius="@dimen/dp_10"

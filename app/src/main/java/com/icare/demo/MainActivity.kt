@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.google.gson.Gson
 import com.hjq.permissions.OnPermissionCallback
+import com.icare.demo.a.TestDialog
 import com.icare.demo.databinding.ActivityMainBinding
 import com.icare.jetpackmvvm.base.BaseApp
 import com.icare.jetpackmvvm.base.activity.BaseVmActivity
@@ -16,13 +17,13 @@ import com.icare.jetpackmvvm.ext.parseState
 import com.icare.jetpackmvvm.ext.setSingleClickListener
 import com.icare.jetpackmvvm.ext.util.toJson
 import com.icare.jetpackmvvm.network.manager.NetState
+import com.icare.jetpackmvvm.util.CommonUtil
 import com.icare.jetpackmvvm.util.LogUtils
 import com.icare.jetpackmvvm.util.Preference
-import com.icare.jetpackmvvm.util.download.FileDownloadCallback
-import com.icare.jetpackmvvm.util.download.HttpRequest
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.File
+import java.lang.Exception
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -42,7 +43,10 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
 //            try {
-                requestHomeViewModel.getShareData()
+            var dialog = TestDialog(this)
+            dialog.show()
+//                requestHomeViewModel.getShareData()
+//            showLoading()
 //            }catch (e:Exception){
 //                Log.e("XXXXXXXXX",e.toString())
 //            }
@@ -75,6 +79,8 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         requestHomeViewModel.bannerData.observe(this) {
             parseState(it, {
                 Log.d("XXXXXXXX", Gson().toJson(it))
+            },{
+                showToast(it.errorMsg)
             })
         }
     }

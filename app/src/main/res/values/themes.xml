@@ -5,6 +5,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:editTextColor">#333333</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@android:color/white</item>
         <!-- Customize your theme here. -->

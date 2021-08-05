@@ -33,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
@@ -41,6 +42,20 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
+
+        <!--下载-->
+
+        <!-- 权限声明 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
     </application>
 
 </manifest>

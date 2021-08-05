@@ -7,9 +7,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +19,7 @@ import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
 import com.icare.jetpackmvvm.util.StyleableToast
 import com.kaopiz.kprogresshud.KProgressHUD
+
 import me.yokeyword.fragmentation.SupportFragment
 
 

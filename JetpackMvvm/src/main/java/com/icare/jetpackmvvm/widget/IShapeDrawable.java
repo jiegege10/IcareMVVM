@@ -6,7 +6,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 
 public interface IShapeDrawable<V extends View> {
-
     int DEFAULT_SHAPE = GradientDrawable.RECTANGLE;
     int DEFAULT_SHAPE_WIDTH = -1;
     int DEFAULT_SHAPE_HEIGHT = -1;

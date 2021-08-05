@@ -3,12 +3,10 @@ package com.icare.jetpackmvvm.base.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.permissions.OnPermissionCallback
-import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.icare.jetpackmvvm.R
 import com.icare.jetpackmvvm.base.AccountExceptionEntity
@@ -16,7 +14,6 @@ import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.icare.jetpackmvvm.ext.getVmClazz
 import com.icare.jetpackmvvm.network.manager.NetState
 import com.icare.jetpackmvvm.network.manager.NetworkStateManager
-import com.icare.jetpackmvvm.util.LogUtils
 import com.icare.jetpackmvvm.util.StyleableToast
 import com.kaopiz.kprogresshud.KProgressHUD
 import me.yokeyword.fragmentation.SupportActivity
@@ -51,11 +48,11 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
 
     abstract fun dismissLoading()
     open val mImmersionBar: ImmersionBar by lazy {
-        ImmersionBar.with(this).statusBarDarkFont(true)
+        ImmersionBar.with(this).fitsSystemWindows(true).statusBarDarkFont(true)
             .keyboardEnable(true)
             .statusBarColor(R.color.white)
             .navigationBarColor(R.color.white)
-            .fitsSystemWindows(true)
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -74,6 +71,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this)
         }
@@ -206,7 +204,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
      */
     open fun showProgressDialog(msg: String = "请稍后...") {
         if (!isFinishing) {
-            mWaitPorgressDialog!!
+            mWaitPorgressDialog
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel(msg)
                 .setCancellable(true)
