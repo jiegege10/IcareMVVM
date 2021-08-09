@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ tencent is pleased to support the open source community by making icare_android available.
+
+ copyright (c) 2017-2018 thl a29 limited, a tencent company. all rights reserved.
+
+ licensed under the mit license (the "license"); you may not use this file except in
+ compliance with the license. you may obtain a copy of the license at
+
+ http://opensource.org/licenses/mit
+
+ unless required by applicable law or agreed to in writing, software distributed under the license is
+ distributed on an "as is" basis, without warranties or conditions of any kind,
+ either express or implied. see the license for the specific language governing permissions and
+ limitations under the license.
+-->
+
+<resources>
+    <attr name="icare_alpha_pressed" format="float" />
+    <attr name="icare_alpha_disabled" format="float" />
+
+    <attr name="icare_general_shadow_elevation" format="dimension" />
+    <attr name="icare_general_shadow_alpha" format="float" />
+
+    <!-- dialog -->
+    <item name="icare_dialog_root_layout" type="id"/>
+    <item name="icare_dialog_layout" type="id"/>
+    <item name="icare_dialog_title_id" type="id"/>
+    <item name="icare_dialog_operator_layout_id" type="id"/>
+    <item name="icare_dialog_content_id" type="id"/>
+    <item name="icare_dialog_edit_input" type="id"/>
+    <item name="icare_dialog_edit_right_icon" type="id"/>
+    <item name="icare_bottom_sheet_title" type="id"/>
+    <item name="icare_bottom_sheet_cancel" type="id"/>
+
+    <item name="icare_tab_segment_item_id" type="id"/>
+
+    <item name="icare_view_can_not_cache_tag" type="id"/>
+
+    <item name="icare_topbar_item_left_back" type="id"/>
+
+    <item name="icare_view_offset_helper" type="id"/>
+    <item name="icare_window_inset_layout_display_cutout" type="id"/>
+
+    <item name="icare_window_inset_keyboard_area_consumer" type="id"/>
+
+    <item name="icare_popup_close_btn_id" type="id"/>
+
+    <item name="icare_skin_current" type="id"/>
+    <item name="icare_skin_value" type="id" />
+    <item name="icare_skin_default_attr_provider" type="id" />
+    <item name="icare_skin_apply_listener" type="id" />
+    <item name="icare_skin_skip_for_maker" type="id"/>
+    <item name="icare_skin_adapter" type="id"/>
+    <item name="icare_skin_intercept_dispatch" type="id"/>
+    <item name="icare_skin_ignore_apply" type="id"/>
+
+    <item name="icare_click_timestamp" type="id"/>
+    <item name="icare_click_debounce_action" type="id"/>
+</resources>

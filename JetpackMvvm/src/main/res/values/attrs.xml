@@ -301,4 +301,78 @@
         <attr name="shape_dashGap" />
     </declare-styleable>
 
+    <!-- 圆角是否要自适应为 View 高度的一半 -->
+    <attr name="icare_isRadiusAdjustBounds" format="boolean"/>
+    <!-- 同时指定四个方向的圆角大小 -->
+    <attr name="icare_radius" format="dimension"/>
+    <!-- 指定左上方圆角的大小 -->
+    <attr name="icare_radiusTopLeft" format="dimension"/>
+    <!-- 指定右上方圆角的大小 -->
+    <attr name="icare_radiusTopRight" format="dimension"/>
+    <!-- 指定左下方圆角的大小 -->
+    <attr name="icare_radiusBottomLeft" format="dimension"/>
+    <!-- 指定右下方圆角的大小 -->
+    <attr name="icare_radiusBottomRight" format="dimension"/>
+    <attr name="icare_borderColor" format="color"/>
+    <attr name="ICareButtonStyle" format="reference"/>
+    <attr name="icare_borderWidth" format="dimension"/>
+    <declare-styleable name="ICareTextCommonStyleDef">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:background" />
+        <attr name="android:gravity" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+        <attr name="android:singleLine" />
+        <attr name="android:ellipsize" />
+        <attr name="android:maxLines" />
+        <attr name="android:lineSpacingExtra" />
+        <attr name="android:drawablePadding" />
+        <attr name="android:textColorHint" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+    <declare-styleable name="ICareLayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="icare_bottomDividerHeight" format="dimension" />
+        <attr name="icare_bottomDividerColor" format="color|reference" />
+        <attr name="icare_bottomDividerInsetLeft" format="dimension" />
+        <attr name="icare_bottomDividerInsetRight" format="dimension" />
+        <attr name="icare_topDividerHeight" format="dimension" />
+        <attr name="icare_topDividerColor" format="color|reference" />
+        <attr name="icare_topDividerInsetLeft" format="dimension" />
+        <attr name="icare_topDividerInsetRight" format="dimension" />
+        <attr name="icare_leftDividerWidth" format="dimension" />
+        <attr name="icare_leftDividerColor" format="color|reference" />
+        <attr name="icare_leftDividerInsetTop" format="dimension" />
+        <attr name="icare_leftDividerInsetBottom" format="dimension" />
+        <attr name="icare_rightDividerWidth" format="dimension" />
+        <attr name="icare_rightDividerColor" format="color|reference" />
+        <attr name="icare_rightDividerInsetTop" format="dimension" />
+        <attr name="icare_rightDividerInsetBottom" format="dimension" />
+        <attr name="icare_radius" />
+        <attr name="icare_borderColor" />
+        <attr name="icare_borderWidth" />
+        <attr name="icare_outerNormalColor" format="color|reference" />
+        <attr name="icare_hideRadiusSide" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+            <enum name="left" value="4" />
+        </attr>
+        <attr name="icare_showBorderOnlyBeforeL" format="boolean" />
+        <attr name="icare_shadowElevation" format="dimension" />
+        <attr name="icare_useThemeGeneralShadowElevation" format="boolean" />
+        <attr name="icare_shadowAlpha" format="float" />
+        <attr name="icare_outlineInsetTop" format="dimension" />
+        <attr name="icare_outlineInsetLeft" format="dimension" />
+        <attr name="icare_outlineInsetRight" format="dimension" />
+        <attr name="icare_outlineInsetBottom" format="dimension" />
+        <attr name="icare_outlineExcludePadding" format="boolean" />
+    </declare-styleable>
 </resources>

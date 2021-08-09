@@ -11,30 +11,50 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.icare.jetpackmvvm.widget.cardview.ICareUILinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:background="@color/white"
+            app:icare_borderColor="@color/icare_config_color_separator"
+            app:icare_outerNormalColor="#2978EF"
+            app:icare_radius="10dp"
+            app:icare_shadowAlpha="0.4"
+            app:icare_shadowElevation="20dp"
+            app:icare_showBorderOnlyBeforeL="true" >
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="123123"
+                android:textColor="#333" />
+        </com.icare.jetpackmvvm.widget.cardview.ICareUILinearLayout>
 
         <com.icare.jetpackmvvm.widget.ShapeTextView
+            android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1231"
-            android:id="@+id/tv_text"
-            app:shape_strokeColor="#f0f"
-            app:shape_strokeWidth="2dp"
             app:shape_radius="@dimen/dp_10"
-            />
+            app:shape_strokeColor="#f0f"
+            app:shape_strokeWidth="2dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="fill_parent"
+            android:background="@color/app_333"
+            android:layout_height="wrap_content"
+            app:spanCount="3"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
         <com.icare.jetpackmvvm.widget.RxTitle
             android:id="@+id/tvtitle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:title="1111" />
 
-        <TextView
-            android:id="@+id/tv"
-            android:textColor="#333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="123123"/>
     </LinearLayout>
 </layout>
