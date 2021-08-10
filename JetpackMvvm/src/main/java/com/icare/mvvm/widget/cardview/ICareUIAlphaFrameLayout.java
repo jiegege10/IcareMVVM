@@ -2,10 +2,11 @@ package com.icare.mvvm.widget.cardview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class ICareUIAlphaFrameLayout extends ConstraintLayout implements ICareAlphaViewInf {
+public class ICareUIAlphaFrameLayout extends FrameLayout implements ICareAlphaViewInf {
 
     private ICareAlphaViewHelper mAlphaViewHelper;
 

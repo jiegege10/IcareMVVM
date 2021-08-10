@@ -105,7 +105,7 @@ public class ICareUILayoutHelper implements ICareLayout {
         mShadowAlpha = ICareUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha)==0.0?0.4f: ICareUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha);
         mBorderRect = new RectF();
 
-        int radius =  CommonUtil.INSTANCE.dp2px(BaseApp.Companion.getContent(),10), shadow =  CommonUtil.INSTANCE.dp2px(BaseApp.Companion.getContent(),20);
+        int radius =  CommonUtil.INSTANCE.dp2px(context,10), shadow =  CommonUtil.INSTANCE.dp2px(context,20);
         boolean useThemeGeneralShadowElevation = false;
         if (null != attrs || defAttr != 0 || defStyleRes != 0) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ICareLayout, defAttr, defStyleRes);
@@ -157,7 +157,7 @@ public class ICareUILayoutHelper implements ICareLayout {
                 } else if (index == R.styleable.ICareLayout_icare_borderWidth) {
                     mBorderWidth = ta.getDimensionPixelSize(index, mBorderWidth);
                 } else if (index == R.styleable.ICareLayout_icare_radius) {
-                    radius = ta.getDimensionPixelSize(index,  CommonUtil.INSTANCE.dp2px(BaseApp.Companion.getContent(),10));
+                    radius = ta.getDimensionPixelSize(index,  CommonUtil.INSTANCE.dp2px(context,10));
                 } else if (index == R.styleable.ICareLayout_icare_outerNormalColor) {
                     mOuterNormalColor = ta.getColor(index, mOuterNormalColor);
                 } else if (index == R.styleable.ICareLayout_icare_hideRadiusSide) {
@@ -165,7 +165,7 @@ public class ICareUILayoutHelper implements ICareLayout {
                 } else if (index == R.styleable.ICareLayout_icare_showBorderOnlyBeforeL) {
                     mIsShowBorderOnlyBeforeL = ta.getBoolean(index, mIsShowBorderOnlyBeforeL);
                 } else if (index == R.styleable.ICareLayout_icare_shadowElevation) {
-                    shadow = ta.getDimensionPixelSize(index, CommonUtil.INSTANCE.dp2px(BaseApp.Companion.getContent(),shadow));
+                    shadow = ta.getDimensionPixelSize(index, CommonUtil.INSTANCE.dp2px(context,shadow));
                 } else if (index == R.styleable.ICareLayout_icare_shadowAlpha) {
                     mShadowAlpha = ta.getFloat(index, mShadowAlpha);
                 } else if (index == R.styleable.ICareLayout_icare_useThemeGeneralShadowElevation) {

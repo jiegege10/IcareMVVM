@@ -57,4 +57,14 @@
 
     <item name="icare_click_timestamp" type="id"/>
     <item name="icare_click_debounce_action" type="id"/>
+
+
+    <item name="sLeftViewId" type="id" />
+    <item name="sCenterViewId" type="id" />
+    <item name="sRightViewId" type="id" />
+    <item name="sLeftImgId" type="id" />
+    <item name="sRightImgId" type="id" />
+    <item name="sRightCheckBoxId" type="id" />
+    <item name="sRightSwitchId" type="id" />
+    <item name="sRightEditTextId" type="id" />
 </resources>
