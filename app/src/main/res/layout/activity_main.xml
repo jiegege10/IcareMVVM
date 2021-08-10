@@ -15,27 +15,26 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <com.icare.jetpackmvvm.widget.cardview.ICareUILinearLayout
+        <com.icare.mvvm.widget.cardview.ICareUIConstraintLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="20dp"
             android:background="@color/white"
-            app:icare_borderColor="@color/icare_config_color_separator"
-            app:icare_outerNormalColor="#2978EF"
-            app:icare_radius="10dp"
-            app:icare_shadowAlpha="0.4"
-            app:icare_shadowElevation="20dp"
-            app:icare_showBorderOnlyBeforeL="true" >
+    >
 
             <TextView
                 android:id="@+id/tv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="123123"
-                android:textColor="#333" />
-        </com.icare.jetpackmvvm.widget.cardview.ICareUILinearLayout>
+                android:textColor="#333"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.icare.mvvm.widget.cardview.ICareUIConstraintLayout>
 
-        <com.icare.jetpackmvvm.widget.ShapeTextView
+        <com.icare.mvvm.widget.ShapeTextView
             android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,11 +45,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="fill_parent"
-            android:background="@color/app_333"
             android:layout_height="wrap_content"
-            app:spanCount="3"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
-        <com.icare.jetpackmvvm.widget.RxTitle
+            android:background="@color/app_333"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3" />
+
+        <com.icare.mvvm.widget.RxTitle
             android:id="@+id/tvtitle"
             android:layout_width="match_parent"
             android:layout_height="50dp"

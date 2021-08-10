@@ -1,18 +1,12 @@
 package com.icare.demo
 
-import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
 import com.icare.demo.a.HeaderInterceptor
-import com.icare.jetpackmvvm.base.appContext
-import com.icare.jetpackmvvm.network.BaseNetworkApi
-import okhttp3.Cache
+import com.icare.mvvm.network.BaseNetworkApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**

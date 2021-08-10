@@ -1,6 +1,6 @@
 package com.icare.demo
 
-import com.icare.jetpackmvvm.network.BaseResponse
+import com.icare.mvvm.network.BaseResponse
 
 data class ApiResponse<T>(val code: Int, val msg: String, val data: T) : BaseResponse<T>() {
 

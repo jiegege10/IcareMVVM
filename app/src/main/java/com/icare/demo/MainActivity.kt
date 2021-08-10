@@ -1,31 +1,16 @@
 package com.icare.demo
 
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Message
 import android.util.Log
 import androidx.activity.viewModels
 import com.google.gson.Gson
-import com.hjq.permissions.OnPermissionCallback
 import com.icare.demo.a.TestDialog
 import com.icare.demo.databinding.ActivityMainBinding
-import com.icare.jetpackmvvm.base.BaseApp
-import com.icare.jetpackmvvm.base.activity.BaseVmActivity
-import com.icare.jetpackmvvm.ext.init
-import com.icare.jetpackmvvm.ext.parseState
-import com.icare.jetpackmvvm.ext.setSingleClickListener
-import com.icare.jetpackmvvm.ext.util.toJson
-import com.icare.jetpackmvvm.network.manager.NetState
-import com.icare.jetpackmvvm.util.CommonUtil
-import com.icare.jetpackmvvm.util.LogUtils
-import com.icare.jetpackmvvm.util.Preference
+import com.icare.mvvm.ext.init
+import com.icare.mvvm.ext.parseState
+import com.icare.mvvm.ext.setSingleClickListener
+import com.icare.mvvm.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
-import java.io.File
-import java.lang.Exception
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>() {
     //请求数据ViewModel

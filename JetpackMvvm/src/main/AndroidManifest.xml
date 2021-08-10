@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.icare.jetpackmvvm" >
+    package="com.icare.mvvm" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application>
         <provider
             android:authorities="${applicationId}.KtxInstaller"
-            android:name="com.icare.jetpackmvvm.base.Ktx"
+            android:name="com.icare.mvvm.base.Ktx"
             android:exported="false"/>
     </application>
 </manifest>

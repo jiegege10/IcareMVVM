@@ -1,11 +1,9 @@
 package com.icare.demo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.ViewDataBinding
-import com.icare.jetpackmvvm.base.activity.BaseVmDbActivity
-import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
-import com.icare.jetpackmvvm.util.LogUtils
+import com.icare.mvvm.base.activity.BaseVmDbActivity
+import com.icare.mvvm.base.viewmodel.BaseViewModel
 
 /**
  * 时间　: 2019/12/21

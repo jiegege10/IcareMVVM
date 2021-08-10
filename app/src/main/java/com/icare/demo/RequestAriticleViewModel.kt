@@ -1,10 +1,9 @@
 package com.icare.demo
 
 import androidx.lifecycle.MutableLiveData
-import com.icare.jetpackmvvm.base.viewmodel.BaseViewModel
-import com.icare.jetpackmvvm.ext.request
-import com.icare.jetpackmvvm.state.ResultState
-import com.icare.jetpackmvvm.util.LogUtils
+import com.icare.mvvm.base.viewmodel.BaseViewModel
+import com.icare.mvvm.ext.request
+import com.icare.mvvm.state.ResultState
 
 
 /**
