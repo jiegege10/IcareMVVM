@@ -506,17 +506,17 @@
         <attr name="sRightViewMarginLeft" format="dimension" />
         <attr name="sRightViewMarginRight" format="dimension" />
         <!-- 自定义属性超过128个导致布局无法预览，故暂时去除不重要的属性 -->
-        <!--<attr name="sLeftTopTextIsBold" format="boolean" />-->
-        <!--<attr name="sLeftTextIsBold" format="boolean" />-->
-        <!--<attr name="sLeftBottomTextIsBold" format="boolean" />-->
+        <attr name="sLeftTopTextIsBold" format="boolean" />
+        <attr name="sLeftTextIsBold" format="boolean" />
+        <attr name="sLeftBottomTextIsBold" format="boolean" />
 
-        <!--<attr name="sCenterTopTextIsBold" format="boolean" />-->
-        <!--<attr name="sCenterTextIsBold" format="boolean" />-->
-        <!--<attr name="sCenterBottomTextIsBold" format="boolean" />-->
+        <attr name="sCenterTopTextIsBold" format="boolean" />
+        <attr name="sCenterTextIsBold" format="boolean" />
+        <attr name="sCenterBottomTextIsBold" format="boolean" />
 
-        <!--<attr name="sRightTopTextIsBold" format="boolean" />-->
-        <!--<attr name="sRightTextIsBold" format="boolean" />-->
-        <!--<attr name="sRightBottomTextIsBold" format="boolean" />-->
+        <attr name="sRightTopTextIsBold" format="boolean" />
+        <attr name="sRightTextIsBold" format="boolean" />
+        <attr name="sRightBottomTextIsBold" format="boolean" />
 
         <attr name="sLeftTextBackground" format="reference" />
         <attr name="sCenterTextBackground" format="reference" />

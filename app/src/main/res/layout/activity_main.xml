@@ -42,6 +42,22 @@
             app:shape_radius="@dimen/dp_10"
             app:shape_strokeColor="#f0f"
             app:shape_strokeWidth="2dp" />
+        <com.icare.mvvm.widget.supper.ICareSuperTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            stv:sLeftTextString="文本框"
+            stv:sRightViewType="edittext"
+            stv:sEditMinWidth="200dp"
+            stv:sEditHint="请输入账号"
+            stv:sEditHintTextColor="#f00"
+            stv:sEditTextColor="#0f0"
+            stv:sEditTextSize="15sp"
+            stv:sEditActiveLineColor="#00f"
+            stv:sEditCursorVisible="true"
+            android:inputType="number"
+            stv:sLeftTextIsBold="true"
+            android:imeOptions="actionDone"
+          />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="fill_parent"

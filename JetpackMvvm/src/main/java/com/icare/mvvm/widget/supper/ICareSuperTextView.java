@@ -130,17 +130,17 @@ public class ICareSuperTextView extends RelativeLayout {
     private int mRightMaxEms;
     private int mRightBottomMaxEms;
 
-//    private boolean mLeftTopTextBold;
-//    private boolean mLeftTextBold;
-//    private boolean mLeftBottomTextBold;
-//
-//    private boolean mCenterTopTextBold;
-//    private boolean mCenterTextBold;
-//    private boolean mCenterBottomTextBold;
-//
-//    private boolean mRightTopTextBold;
-//    private boolean mRightTextBold;
-//    private boolean mRightBottomTextBold;
+    private boolean mLeftTopTextBold;
+    private boolean mLeftTextBold;
+    private boolean mLeftBottomTextBold;
+
+    private boolean mCenterTopTextBold;
+    private boolean mCenterTextBold;
+    private boolean mCenterBottomTextBold;
+
+    private boolean mRightTopTextBold;
+    private boolean mRightTextBold;
+    private boolean mRightBottomTextBold;
 
     private Drawable mLeftTextBackground;
     private Drawable mCenterTextBackground;
@@ -484,17 +484,17 @@ public class ICareSuperTextView extends RelativeLayout {
         leftIconRes = typedArray.getDrawable(R.styleable.ICareSuperTextView_sLeftIconRes);
         rightIconRes = typedArray.getDrawable(R.styleable.ICareSuperTextView_sRightIconRes);
         ////////////////////////由于自定义方法数达到最大限度128个，暂时关闭不常用属性改为代码控制//////////////////////
-//        mLeftTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftTopTextIsBold, false);
-//        mLeftTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftTextIsBold, false);
-//        mLeftBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftBottomTextIsBold, false);
-//
-//        mCenterTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterTopTextIsBold, false);
-//        mCenterTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterTextIsBold, false);
-//        mCenterBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterBottomTextIsBold, false);
-//
-//        mRightTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightTopTextIsBold, false);
-//        mRightTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightTextIsBold, false);
-//        mRightBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightBottomTextIsBold, false);
+        mLeftTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftTopTextIsBold, false);
+        mLeftTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftTextIsBold, false);
+        mLeftBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sLeftBottomTextIsBold, false);
+
+        mCenterTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterTopTextIsBold, false);
+        mCenterTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterTextIsBold, false);
+        mCenterBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sCenterBottomTextIsBold, false);
+
+        mRightTopTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightTopTextIsBold, false);
+        mRightTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightTextIsBold, false);
+        mRightBottomTextBold = typedArray.getBoolean(R.styleable.ICareSuperTextView_sRightBottomTextIsBold, false);
 
         mLeftTextBackground = typedArray.getDrawable(R.styleable.ICareSuperTextView_sLeftTextBackground);
         mCenterTextBackground = typedArray.getDrawable(R.styleable.ICareSuperTextView_sCenterTextBackground);
@@ -801,7 +801,7 @@ public class ICareSuperTextView extends RelativeLayout {
         setDefaultSize(leftView, mLeftTopTextSize, mLeftTextSize, mLeftBottomTextSize);
         setDefaultLines(leftView, mLeftTopLines, mLeftLines, mLeftBottomLines);
         setDefaultMaxEms(leftView, mLeftTopMaxEms, mLeftMaxEms, mLeftBottomMaxEms);
-//        setDefaultTextIsBold(leftView, mLeftTopTextBold, mLeftTextBold, mLeftBottomTextBold);
+        setDefaultTextIsBold(leftView, mLeftTopTextBold, mLeftTextBold, mLeftBottomTextBold);
         setDefaultGravity(leftView, mLeftGravity);
         setDefaultTextGravity(leftView, mLeftTextGravity);
         setDefaultDrawable(leftView.getCenterTextView(), mLeftTvDrawableLeft, mLeftTvDrawableRight, mTextViewDrawablePadding, mLeftTvDrawableWidth, mLeftTvDrawableHeight);
@@ -868,7 +868,7 @@ public class ICareSuperTextView extends RelativeLayout {
         setDefaultSize(rightView, mRightTopTextSize, mRightTextSize, mRightBottomTextSize);
         setDefaultLines(rightView, mRightTopLines, mRightLines, mRightBottomLines);
         setDefaultMaxEms(rightView, mRightTopMaxEms, mRightMaxEms, mRightBottomMaxEms);
-//        setDefaultTextIsBold(rightView, mRightTopTextBold, mRightTextBold, mRightBottomTextBold);
+        setDefaultTextIsBold(rightView, mRightTopTextBold, mRightTextBold, mRightBottomTextBold);
         setDefaultGravity(rightView, mRightGravity);
         setDefaultTextGravity(rightView, mRightTextGravity);
         setDefaultDrawable(rightView.getCenterTextView(), mRightTvDrawableLeft, mRightTvDrawableRight, mTextViewDrawablePadding, mRightTvDrawableWidth, mRightTvDrawableHeight);
