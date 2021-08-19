@@ -1,11 +1,15 @@
 package com.icare.mvvm.ext
 
 import android.app.Activity
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.Checkable
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.icare.mvvm.util.CommonUtil
 import com.icare.mvvm.widget.RxTitle
 
 /**
@@ -37,7 +41,29 @@ fun RxTitle.init(titleStr: String = "", context: Activity): RxTitle {
     setLeftFinish(context)
     return this
 }
+fun WebView.init() : WebView {
+    settings.javaScriptEnabled = true
+    settings.useWideViewPort = true
+    settings.loadWithOverviewMode = true
+    settings.setSupportZoom(true)
+    settings.minimumFontSize = CommonUtil.dp2px(context, 28f)
 
+    //设置默认编码
+    settings.defaultTextEncodingName = "utf-8"
+    ////设置自动加载图片
+    settings.loadsImagesAutomatically = true
+    settings.cacheMode = WebSettings.LOAD_NO_CACHE
+
+    settings.javaScriptEnabled = true
+    settings.displayZoomControls = false //隐藏原生的缩放控件
+    settings.javaScriptCanOpenWindowsAutomatically = true
+    settings.allowFileAccess = true
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+    }
+    return this
+}
 //设置适配器的列表动画
 fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
     //等于0，关闭列表动画 否则开启

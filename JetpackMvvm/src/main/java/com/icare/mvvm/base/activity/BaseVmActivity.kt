@@ -84,6 +84,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         init(savedInstanceState)
     }
 
+
     open fun setNoStatusBar() {
         mImmersionBar.transparentStatusBar().fitsSystemWindows(false)?.init()
     }

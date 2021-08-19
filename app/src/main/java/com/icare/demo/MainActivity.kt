@@ -9,6 +9,7 @@ import com.icare.demo.databinding.ActivityMainBinding
 import com.icare.mvvm.ext.init
 import com.icare.mvvm.ext.parseState
 import com.icare.mvvm.ext.setSingleClickListener
+import com.icare.mvvm.util.LogUtils
 import com.icare.mvvm.util.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,13 +24,24 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
 
 
         }
+        tv_aaa.setOnSuperTextViewClickListener {
+            LogUtils.debugInfo("XXXXX")
+        }
+        tv_time.setOnSuperTextViewClickListener {
+//            LogUtils.debugInfo("XXXXX")
+            requestHomeViewModel.getShareData()
+        }
+        tv_aaa.setEditString("xxxxasdasdasdasd")
+
         tvtitle.setRightIcon(R.mipmap.icon_delete_gray)
         tvtitle.setRightIconVisibility(true)
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
+            LogUtils.debugInfo( mDatabind.tvAaa.editText.text.toString())
+//            requestHomeViewModel.getShareData()
 //            try {
-            var dialog = TestDialog(this)
-            dialog.show()
+//            var dialog = TestDialog(this)
+//            dialog.show()
 //                requestHomeViewModel.getShareData()
 //            showLoading()
 //            }catch (e:Exception){

@@ -978,7 +978,7 @@ public class ICareSuperTextView extends RelativeLayout {
             mEditText.setCursorVisible(mEditCusorVisible);
             //setFocusable(true);
             //setFocusableInTouchMode(true);
-            EditTextHelper.INSTANCE.setCursorDrawable(mEditText,mEditCusorDrawableRes);
+//            EditTextHelper.INSTANCE.setCursorDrawable(mEditText,mEditCusorDrawableRes);
         }
 
         if(mRightEditHintTextColor!=null){
@@ -1424,6 +1424,12 @@ public class ICareSuperTextView extends RelativeLayout {
     public ICareSuperTextView setLeftString(CharSequence string) {
         if (leftView != null) {
             leftView.setCenterTextString(string);
+        }
+        return this;
+    }
+    public ICareSuperTextView setEditString(CharSequence string) {
+        if (mEditText != null) {
+            mEditText.setText(string);
         }
         return this;
     }

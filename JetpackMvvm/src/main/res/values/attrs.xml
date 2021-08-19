@@ -755,4 +755,11 @@
         <attr name="civ_fill_color" format="color" />
         <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
+
+    <style name="MyDialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
 </resources>

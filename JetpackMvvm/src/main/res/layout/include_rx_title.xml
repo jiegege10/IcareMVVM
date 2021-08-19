@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:hint="标题"
+        android:hint="标题标题标题标题标题标题标题标题标题标题"
         android:inputType="textMultiLine|textNoSuggestions"
         android:isScrollContainer="false"
         android:maxLength="240"

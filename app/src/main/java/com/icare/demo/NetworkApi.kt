@@ -1,8 +1,10 @@
 package com.icare.demo
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.icare.demo.a.HeaderInterceptor
 import com.icare.mvvm.network.BaseNetworkApi
+import com.icare.mvvm.network.interceptor.logging.LogInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,8 +40,14 @@ class NetworkApi : BaseNetworkApi() {
 //            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
 //        }
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
         builder.apply {
-            addInterceptor(httpLoggingInterceptor)
+//            addInterceptor(
+//                LoggingInterceptor.Builder()
+//                    .setLevel(Level.BASIC)
+//                    .log(Log.VERBOSE)
+//                    .build())
+            addInterceptor(LogInterceptor())
             addInterceptor(HeaderInterceptor())
             addInterceptor(ResponseBodyInterceptor())
             //超时时间 连接、读、写

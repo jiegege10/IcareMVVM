@@ -3,7 +3,9 @@ package com.icare.mvvm.util
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Build
 import android.os.CountDownTimer
 import android.os.Environment
@@ -71,26 +73,20 @@ object CommonUtil {
         return context.resources.getDimensionPixelSize(resourceId)
     }
 
-    fun initData(): List<String> {
-        val approveList: MutableList<String> = ArrayList()
-        approveList.add("http://img2.imgtn.bdimg.com/it/u=1939271907,257307689&fm=21&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        approveList.add("http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg")
-        return approveList
+    
+    /**
+    * @date: 2021/8/16 4:46 下午
+    * @author: Mr.He
+    * @param 打电话
+    * @return 
+    */
+
+    fun callPhone(content: Context, phoneNum: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        val data: Uri = Uri.parse("tel:$phoneNum")
+        intent.data = data
+        content.startActivity(intent)
     }
-
-
     /**
      * 解决InputMethodManager引起的内存泄漏
      * 在Activity的onDestroy方法里调用
