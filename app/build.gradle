@@ -47,8 +47,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //项目核心框架
-//    implementation 'com.github.jiegege10:IcareMVVM:0.0.8'
-//    implementation 'com.github.jiegege10:IcareMVVM:v0.0.4'
-//    implementation 'com.github.jiegege10:IcareMVVM:0.1.5'
+//    implementation 'com.github.jiegege10:IcareMVVM:0.1.5.3'
+//    implementation 'com.github.jiegege10:IcareMVVM:0.1.5.3'
     implementation project(path: ':lib')
 }

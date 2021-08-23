@@ -44,9 +44,12 @@ abstract class BaseDialogFragment<VM : BaseViewModel, DB : ViewDataBinding>  : D
      * 创建观察者
      */
     abstract fun createObserver()
+    abstract fun initView(savedInstanceState: Bundle?)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initView(savedInstanceState)
         createObserver()
+
     }
     /**
      * 创建viewModel
@@ -69,6 +72,7 @@ abstract class BaseDialogFragment<VM : BaseViewModel, DB : ViewDataBinding>  : D
     }
     override fun onViewCreated(@NotNull view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         ImmersionBar.with(this)
             .statusBarDarkFont(true)
             .statusBarColor(R.color.app_dividing)

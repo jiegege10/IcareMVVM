@@ -22,22 +22,27 @@ class MainActivity : BaseActivity<RequestAriticleViewModel, ActivityMainBinding>
         addLoadingObserve(requestHomeViewModel)
         tvtitle.setLeftOnClickListener {
 
-
         }
         tv_aaa.setOnSuperTextViewClickListener {
             LogUtils.debugInfo("XXXXX")
         }
         tv_time.setOnSuperTextViewClickListener {
 //            LogUtils.debugInfo("XXXXX")
-            requestHomeViewModel.getShareData()
+//            requestHomeViewModel.getShareData()
+
+
         }
+
         tv_aaa.setEditString("xxxxasdasdasdasd")
 
         tvtitle.setRightIcon(R.mipmap.icon_delete_gray)
         tvtitle.setRightIconVisibility(true)
         tvtitle.init("", this)
         mDatabind.tv.setSingleClickListener {
-            LogUtils.debugInfo( mDatabind.tvAaa.editText.text.toString())
+            showProgressDialog("测试") {
+                LogUtils.debugInfo("取消了")
+            }
+//            LogUtils.debugInfo( mDatabind.tvAaa.editText.text.toString())
 //            requestHomeViewModel.getShareData()
 //            try {
 //            var dialog = TestDialog(this)

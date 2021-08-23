@@ -536,7 +536,7 @@ public class ICareSuperTextView extends RelativeLayout {
                 editActiveLineColor = typedArray.getColor(R.styleable.ICareSuperTextView_sEditActiveLineColor, editActiveLineColor);
                 mEditTextSize = typedArray.getDimensionPixelSize(R.styleable.ICareSuperTextView_sEditTextSize, defaultSize);
                 mEditCusorDrawableRes = typedArray.getResourceId(R.styleable.ICareSuperTextView_sEditCursorDrawable,0);
-                mEditCusorVisible = typedArray.getBoolean(R.styleable.ICareSuperTextView_sEditCursorVisible,true);
+                mEditCusorVisible = typedArray.getBoolean(R.styleable.ICareSuperTextView_sEditCursorVisible,false);
             }break;
         }
 

@@ -1,5 +1,6 @@
 package com.icare.mvvm.base.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +31,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @updateDate:     6/17/21 11:09 AM
  */
 abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
-    val mWaitPorgressDialog by lazy { KProgressHUD.create(this) }
+    open val mWaitPorgressDialog by lazy { KProgressHUD.create(this) }
     private val TAG: String = this.javaClass.simpleName
 
     /**
@@ -65,14 +66,15 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (EventBus.getDefault().isRegistered(this)){
+        if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
         if (!isUserDb) {
@@ -210,6 +212,22 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
                 .setLabel(msg)
                 .setCancellable(true)
             mWaitPorgressDialog.show()
+        }
+    }
+
+    open fun showProgressDialog(
+        msg: String = "请稍后...",
+        onCancelListener: DialogInterface.OnCancelListener? = null
+    ) {
+        if (!isFinishing) {
+            mWaitPorgressDialog
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel(msg)
+                .setCancellable(true)
+            mWaitPorgressDialog.show()
+            mWaitPorgressDialog.setCancellable {
+                onCancelListener?.onCancel(it)
+            }
         }
     }
 
