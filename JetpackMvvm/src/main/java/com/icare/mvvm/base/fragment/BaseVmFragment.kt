@@ -1,6 +1,7 @@
 package com.icare.mvvm.base.fragment
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -70,6 +71,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : SupportFragment() {
         registorDefUIChange()
         initData()
     }
+
     /**
      * @date: 2021/7/20 2:38 下午
      * @author: Mr.He
@@ -109,6 +111,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : SupportFragment() {
 
         })
     }
+
     /**
      * 网络变化监听 子类重写
      */
@@ -190,12 +193,26 @@ abstract class BaseVmFragment<VM : BaseViewModel> : SupportFragment() {
      *
      * @param msg 提示框内容字符串
      */
-    open fun showProgressDialog(msg: String="请稍后...") {
+    open fun showProgressDialog(msg: String = "请稍后...") {
         mWaitPorgressDialog!!
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel(msg)
             .setCancellable(true)
         mWaitPorgressDialog!!.show()
+    }
+
+    open fun showProgressDialog(
+        msg: String = "请稍后...",
+        onCancelListener: DialogInterface.OnCancelListener? = null
+    ) {
+        mWaitPorgressDialog
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel(msg)
+            .setCancellable(true)
+        mWaitPorgressDialog.show()
+        mWaitPorgressDialog.setCancellable {
+            onCancelListener?.onCancel(it)
+        }
     }
 
     /**
