@@ -210,7 +210,7 @@ public class ICareSuperTextView extends RelativeLayout {
     public static final int TOP = 1;
     public static final int BOTTOM = 2;
     public static final int BOTH = 3;
-    private static final int default_Divider = BOTTOM;
+    private static final int default_Divider = NONE;
 
     private int default_Margin = 10;
 
@@ -536,7 +536,7 @@ public class ICareSuperTextView extends RelativeLayout {
                 editActiveLineColor = typedArray.getColor(R.styleable.ICareSuperTextView_sEditActiveLineColor, editActiveLineColor);
                 mEditTextSize = typedArray.getDimensionPixelSize(R.styleable.ICareSuperTextView_sEditTextSize, defaultSize);
                 mEditCusorDrawableRes = typedArray.getResourceId(R.styleable.ICareSuperTextView_sEditCursorDrawable,0);
-                mEditCusorVisible = typedArray.getBoolean(R.styleable.ICareSuperTextView_sEditCursorVisible,false);
+                mEditCusorVisible = typedArray.getBoolean(R.styleable.ICareSuperTextView_sEditCursorVisible,true);
             }break;
         }
 

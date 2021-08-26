@@ -14,6 +14,12 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <androidx.camera.view.PreviewView
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="gone" />
+
         <com.icare.mvvm.widget.cardview.ICareUIConstraintLayout
             android:layout_width="100dp"
             android:layout_height="100dp"

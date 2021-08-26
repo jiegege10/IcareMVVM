@@ -73,13 +73,13 @@ object CommonUtil {
         return context.resources.getDimensionPixelSize(resourceId)
     }
 
-    
+
     /**
-    * @date: 2021/8/16 4:46 下午
-    * @author: Mr.He
-    * @param 打电话
-    * @return 
-    */
+     * @date: 2021/8/16 4:46 下午
+     * @author: Mr.He
+     * @param 打电话
+     * @return
+     */
 
     fun callPhone(content: Context, phoneNum: String) {
         val intent = Intent(Intent.ACTION_DIAL)
@@ -87,6 +87,7 @@ object CommonUtil {
         intent.data = data
         content.startActivity(intent)
     }
+
     /**
      * 解决InputMethodManager引起的内存泄漏
      * 在Activity的onDestroy方法里调用
@@ -161,7 +162,8 @@ object CommonUtil {
      * @param hint     倒计时完毕时显示的文字
      */
     @JvmStatic
-    fun countDown(textView: TextView, waitTime: Long, interval: Long, hint: String?) {
+    fun countDown(textView: TextView, waitTime: Long = 60000, interval: Long = 1000, hint: String = "重新发送")
+    {
         textView.isEnabled = false
         val timer: CountDownTimer = object : CountDownTimer(waitTime, interval) {
             override fun onTick(millisUntilFinished: Long) {
