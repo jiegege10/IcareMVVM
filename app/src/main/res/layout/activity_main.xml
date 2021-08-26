@@ -1,85 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-
+<layout
     >
 
-    <data></data>
+    <data>
 
+    </data>
 
-    <LinearLayout xmlns:stv="http://schemas.android.com/apk/res-auto"
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <androidx.camera.view.PreviewView
-            android:id="@+id/cameraView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:visibility="gone" />
-
-        <com.icare.mvvm.widget.cardview.ICareUIConstraintLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"
-            android:background="@color/white">
-
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="123123"
-                android:textColor="#333"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.icare.mvvm.widget.cardview.ICareUIConstraintLayout>
-
-
-        <com.icare.mvvm.widget.ShapeTextView
-            android:id="@+id/tv_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1231"
-            app:shape_radius="@dimen/dp_10"
-            app:shape_strokeColor="#f0f"
-            app:shape_strokeWidth="2dp" />
-
-        <com.icare.mvvm.widget.supper.ICareSuperTextView
-            android:id="@+id/tv_aaa"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            app:sLeftTextString="有效时间"
-            app:sRightViewType="edittext"
-            stv:sEditHint="请输入"
-            stv:sLeftTextIsBold="true" />
-
-        <com.icare.mvvm.widget.supper.ICareSuperTextView
-            android:id="@+id/tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:imeOptions="actionDone"
-            app:sLeftTextIsBold="true"
-            app:sLeftTextString="有效时间"
-            app:sRightViewType="edittext" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/app_333"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3" />
-
-        <com.icare.mvvm.widget.RxTitle
-            android:id="@+id/tvtitle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:title="1111" />
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 </layout>

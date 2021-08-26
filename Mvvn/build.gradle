@@ -74,4 +74,6 @@ dependencies {
     //头条
     api 'me.jessyan:autosize:1.2.1'
     api 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
+    api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    api  'com.scwang.smart:refresh-header-classics:2.0.3'
 }
