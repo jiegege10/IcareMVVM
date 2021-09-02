@@ -1,4 +1,4 @@
-package com.icare.tianxiangyuan.weight.multichoiceAdapter
+package com.icare.mvvm.widget.multichoiceAdapter
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -10,8 +10,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.icare.mvvm.R
-import com.icare.mvvm.widget.multichoiceAdapter.Constants
-import com.icare.mvvm.widget.multichoiceAdapter.MultiChoiceToolbar
 import java.util.*
 
 internal class MultiChoiceToolbarHelper(private val mMultiChoiceToolbar: MultiChoiceToolbar) {

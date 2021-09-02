@@ -2,4 +2,3 @@ include ':lib'
 include ':app'
 project(':lib').projectDir = new File(rootDir, 'Mvvn/')
 rootProject.name = "IcareMVVMDemo"
-include ':mylibrary'

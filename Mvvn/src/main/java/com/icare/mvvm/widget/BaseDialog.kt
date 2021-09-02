@@ -20,4 +20,8 @@ abstract class BaseDialog(mContext: Context) : Dialog(
         super.onStop()
         dismiss()
     }
+    init {
+        window?.setWindowAnimations(R.style.PopCenteredAnimation)
+
+    }
 }

@@ -40,6 +40,10 @@
         <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
         <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
     </style>
+    <style name="PopCenteredAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_center</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_center</item>
+    </style>
     <!-- Shape 形状（默认是矩形） -->
     <attr name="shape">
         <!-- 矩形 -->

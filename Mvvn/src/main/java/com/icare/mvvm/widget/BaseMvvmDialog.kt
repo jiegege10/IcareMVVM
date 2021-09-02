@@ -25,4 +25,7 @@ abstract class BaseMvvmDialog< DB : ViewDataBinding>(mContext: Context) : Dialog
         super.onStop()
         dismiss()
     }
+    init {
+        window?.setWindowAnimations(R.style.PopCenteredAnimation)
+    }
 }
