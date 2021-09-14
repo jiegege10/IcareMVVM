@@ -11,6 +11,8 @@ import android.os.CountDownTimer
 import android.os.Environment
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.annotation.ColorRes
@@ -162,8 +164,12 @@ object CommonUtil {
      * @param hint     倒计时完毕时显示的文字
      */
     @JvmStatic
-    fun countDown(textView: TextView, waitTime: Long = 60000, interval: Long = 1000, hint: String = "重新发送")
-    {
+    fun countDown(
+        textView: TextView,
+        waitTime: Long = 60000,
+        interval: Long = 1000,
+        hint: String = "重新发送"
+    ) {
         textView.isEnabled = false
         val timer: CountDownTimer = object : CountDownTimer(waitTime, interval) {
             override fun onTick(millisUntilFinished: Long) {
@@ -251,5 +257,38 @@ object CommonUtil {
         val path = Environment.getExternalStorageDirectory().toString() + "/image/image/"
         val file = File(path)
         return if (file.mkdirs()) path else path
+    }
+
+
+    fun startSpinAnimation(it: View, from: Float = 0f, toDegrees: Float = -180f) {
+        val animation: Animation = RotateAnimation(
+            from,
+            toDegrees,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        animation.duration = 500
+        animation.repeatCount = 0 //动画的反复次数
+//        animation.interpolator = AccelerateInterpolator()
+        animation.fillAfter = true //设置为true，动画转化结束后被应用
+        it.startAnimation(animation) //開始动画
+
+    }
+    fun stopSpinAnimation(it: View, from: Float = -180f, toDegrees: Float = 0f) {
+        val animation: Animation = RotateAnimation(
+            from,
+            toDegrees,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        animation.duration = 500
+        animation.repeatCount = 0 //动画的反复次数
+        animation.fillAfter = true //设置为true，动画转化结束后被应用
+        it.startAnimation(animation) //開始动画
+
     }
 }
