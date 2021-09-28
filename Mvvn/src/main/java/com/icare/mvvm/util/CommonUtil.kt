@@ -23,6 +23,14 @@ import com.icare.mvvm.base.BaseApp
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import java.io.File
 import java.lang.reflect.Field
 import java.util.*
@@ -184,6 +192,31 @@ object CommonUtil {
         timer.start()
     }
 
+    //lifecycleScope
+    @JvmStatic
+    fun countDownCoroutines(
+        textView: TextView,
+        scope: CoroutineScope,
+        waitTime: Long = 60000,
+        hint: String = "重新发送"
+    ): Job {
+        return flow {
+            for (i in waitTime downTo 0) {
+                emit(i)
+                delay(1000)
+            }
+        }.flowOn(Dispatchers.Main)
+            .onStart {
+                textView.isEnabled = false
+            }
+            .onCompletion {
+                textView.isEnabled = true
+                textView.text = hint
+            }
+            .onEach { textView.text = "${it}s后重发" }
+            .launchIn(scope)
+    }
+
 
     /**
      * @date: 2021/8/10 10:10 上午
@@ -260,7 +293,12 @@ object CommonUtil {
     }
 
 
-    fun startSpinAnimation(it: View, from: Float = 0f, toDegrees: Float = -180f) {
+    fun startSpinAnimation(
+        it: View,
+        from: Float = 0f,
+        toDegrees: Float = -180f,
+        duration: Long = 200
+    ) {
         val animation: Animation = RotateAnimation(
             from,
             toDegrees,
@@ -269,14 +307,20 @@ object CommonUtil {
             Animation.RELATIVE_TO_SELF,
             0.5f
         )
-        animation.duration = 500
+        animation.duration = duration
         animation.repeatCount = 0 //动画的反复次数
 //        animation.interpolator = AccelerateInterpolator()
         animation.fillAfter = true //设置为true，动画转化结束后被应用
         it.startAnimation(animation) //開始动画
 
     }
-    fun stopSpinAnimation(it: View, from: Float = -180f, toDegrees: Float = 0f) {
+
+    fun stopSpinAnimation(
+        it: View,
+        from: Float = -180f,
+        toDegrees: Float = 0f,
+        duration: Long = 200
+    ) {
         val animation: Animation = RotateAnimation(
             from,
             toDegrees,
@@ -285,7 +329,7 @@ object CommonUtil {
             Animation.RELATIVE_TO_SELF,
             0.5f
         )
-        animation.duration = 500
+        animation.duration = duration
         animation.repeatCount = 0 //动画的反复次数
         animation.fillAfter = true //设置为true，动画转化结束后被应用
         it.startAnimation(animation) //開始动画

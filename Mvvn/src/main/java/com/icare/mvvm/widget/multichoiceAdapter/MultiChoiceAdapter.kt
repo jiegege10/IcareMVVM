@@ -23,7 +23,6 @@ abstract class MultiChoiceAdapter<VH : RecyclerView.ViewHolder?> : RecyclerView.
     private var mListener: Listener? = null
     private var mMultiChoiceToolbarHelper: MultiChoiceToolbarHelper? = null
     private var mRecyclerView: RecyclerView? = null
-    //region Public methods
     /**
      * Override this method to customize the active item
      *
@@ -138,9 +137,7 @@ abstract class MultiChoiceAdapter<VH : RecyclerView.ViewHolder?> : RecyclerView.
     }
 
     fun onSaveInstanceState(@Nullable savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-            savedInstanceState.putSerializable(EXTRA_ITEM_LIST, mItemList as Serializable)
-        }
+        savedInstanceState?.putSerializable(EXTRA_ITEM_LIST, mItemList as Serializable)
     }
 
 
@@ -288,7 +285,7 @@ abstract class MultiChoiceAdapter<VH : RecyclerView.ViewHolder?> : RecyclerView.
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         mRecyclerView = recyclerView
-        for (i in 0 until getItemCount()) {
+        for (i in 0 until itemCount) {
             mItemList[i] =
                 State.INACTIVE
         }

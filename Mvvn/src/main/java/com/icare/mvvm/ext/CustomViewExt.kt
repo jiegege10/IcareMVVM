@@ -1,12 +1,15 @@
 package com.icare.mvvm.ext
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Checkable
+import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.icare.mvvm.util.CommonUtil
@@ -107,3 +110,49 @@ fun hideSoftKeyboard(activity: Activity?) {
         }
     }
 }
+
+/**
+ * 设置TextView的上图片
+ */
+fun TextView.drawableTop(context:Context,@DrawableRes resId: Int) {
+    val drawable = CommonUtil.getDrawable(context,resId).apply {
+        setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    }
+    this.setCompoundDrawables(
+        compoundDrawables[0],
+        drawable,
+        compoundDrawables[2],
+        compoundDrawables[3]
+    )
+}
+
+/**
+ * 设置TextView的上图片
+ */
+fun TextView.drawableEnd(context:Context,@DrawableRes resId: Int) {
+    val drawable = CommonUtil.getDrawable(context,resId).apply {
+        setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    }
+    this.setCompoundDrawablesRelative(
+        compoundDrawables[0],
+        compoundDrawables[1],
+        drawable,
+        compoundDrawables[3]
+    )
+}
+
+/**
+ * 设置TextView的上图片
+ */
+fun TextView.drawableStart(context:Context,@DrawableRes resId: Int) {
+    val drawable =  CommonUtil.getDrawable(context,resId).apply {
+        setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    }
+    this.setCompoundDrawablesRelative(
+        drawable,
+        compoundDrawables[1],
+        compoundDrawables[2],
+        compoundDrawables[3]
+    )
+}
+
