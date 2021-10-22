@@ -2,12 +2,14 @@ package com.icare.mvvm.ext
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import com.icare.mvvm.base.AccountExceptionEntity
 import kotlinx.coroutines.*
 import com.icare.mvvm.base.activity.BaseVmActivity
 import com.icare.mvvm.base.fragment.BaseVmFragment
 import com.icare.mvvm.base.viewmodel.BaseViewModel
 import com.icare.mvvm.ext.util.loge
+import com.icare.mvvm.ext.util.toJson
 import com.icare.mvvm.network.AppException
 import com.icare.mvvm.network.BaseResponse
 import com.icare.mvvm.network.ExceptionHandle
@@ -99,7 +101,7 @@ fun <T> BaseViewModel.requestNoCheck(
         }.onSuccess {
             resultState.paresResult(it)
         }.onFailure {
-            it.message?.loge()
+            it.message?.loge("ajie")
             resultState.paresException(it)
         }
     }
@@ -131,7 +133,7 @@ fun <T> BaseViewModel.request(
             }
 
         }.onFailure {
-            it.message?.loge()
+            it.message?.loge("ajie")
             resultState.paresException(it)
         }
     }
@@ -162,13 +164,18 @@ fun <T> BaseViewModel.request(
             //网络请求成功 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
             runCatching {
-                //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
-                executeResponse(it) {
-                    success(it)
+                try {
+                    //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
+                    executeResponse(it) {
+                        success(it)
+                    }
+                } catch (e: Exception) {
+                    e.toJson()?.loge("ajie")
                 }
+
             }.onFailure { e ->
                 //打印错误消息
-                e.message?.loge()
+                e.message?.loge("ajie")
                 //失败回调
                 error(ExceptionHandle.handleException(e))
             }
@@ -176,7 +183,7 @@ fun <T> BaseViewModel.request(
             //网络请求异常 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
             //打印错误消息
-            it.message?.loge()
+            it.message?.loge("ajie")
             //失败回调
             error(ExceptionHandle.handleException(it))
         }
@@ -207,13 +214,18 @@ fun <T> BaseViewModel.requestNoCheck(
         }.onSuccess {
             //网络请求成功 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
-            //成功回调
-            success(it)
+            try {
+                //成功回调
+                success(it)
+            } catch (e: Exception) {
+                e.toJson()?.loge("阿杰")
+            }
+
         }.onFailure {
             //网络请求异常 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
             //打印错误消息
-            it.message?.loge()
+            it.message?.loge("ajie")
             //失败回调
             error(ExceptionHandle.handleException(it))
         }
