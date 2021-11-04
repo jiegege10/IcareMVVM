@@ -218,7 +218,7 @@ fun <T> BaseViewModel.requestNoCheck(
                 //成功回调
                 success(it)
             } catch (e: Exception) {
-                e.toJson()?.loge("阿杰")
+                e.toJson()?.loge("ajie")
             }
 
         }.onFailure {
