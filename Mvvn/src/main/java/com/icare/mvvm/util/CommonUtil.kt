@@ -286,7 +286,7 @@ object CommonUtil {
             .forResult(type) //结果回调onActivityResult code
     }
 
-    private fun getPath(): String {
+     fun getPath(): String {
         val path = Environment.getExternalStorageDirectory().toString() + "/image/image/"
         val file = File(path)
         return if (file.mkdirs()) path else path
