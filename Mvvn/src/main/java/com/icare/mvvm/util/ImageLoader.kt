@@ -3,9 +3,12 @@ package com.icare.mvvm.util
 import android.graphics.Color
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
+import com.icare.mvvm.R
 import com.icare.mvvm.transform.CropCircleWithBorderTransformation
 import com.icare.mvvm.transform.RoundedCornersTransformation
 
@@ -29,6 +32,14 @@ fun ImageView.loadCenterImage(src: Any?, placeholder: Int? = null, error: Int? =
         if (placeholder != null) it.placeholder(placeholder)
         if (error != null) it.error(error)
     }.into(this)
+}
+fun ImageView.loadImage(src: Any,@DrawableRes error: Int) {
+    if (src == null) return
+    Glide.with(this).asDrawable().fitCenter().load(src).apply(
+        RequestOptions()
+            .error(error)
+            .placeholder(error)
+    ).into(this)
 }
 
 fun ImageView.loadImage(src: Any) {

@@ -246,6 +246,7 @@ object CommonUtil {
             .isCamera(isCamera) // 是否显示拍照按钮
             .isZoomAnim(isZoomAnim) // 图片列表点击 缩放效果 默认true
             .isEnableCrop(isEnableCrop)
+            .isAndroidQTransform(true)
             .compressSavePath(getPath())
             .imageEngine(GlideEngine.createGlideEngine())
             .isCompress(isCompress) // 是否压缩

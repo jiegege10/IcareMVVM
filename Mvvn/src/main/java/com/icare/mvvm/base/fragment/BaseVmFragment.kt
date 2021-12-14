@@ -16,6 +16,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.XXPermissions
 import com.icare.mvvm.base.viewmodel.BaseViewModel
 import com.icare.mvvm.ext.getVmClazz
+import com.icare.mvvm.ext.singleTop
 import com.icare.mvvm.network.manager.NetState
 import com.icare.mvvm.network.manager.NetworkStateManager
 import com.icare.mvvm.util.StyleableToast
@@ -155,7 +156,11 @@ abstract class BaseVmFragment<VM : BaseViewModel> : SupportFragment() {
         startActivity(Intent(requireContext(), clz))
 
     }
+    fun startSingleActivity(clz: Class<*>) {
+        var intent = Intent(requireContext(), clz).singleTop()
+        startActivity(intent)
 
+    }
     /**
      * 是否需要懒加载
      */

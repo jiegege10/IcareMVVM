@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.450951286@qq.com'
+
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -71,10 +73,13 @@ dependencies {
     api 'com.github.getActivity:XXPermissions:11.6'
     api 'com.alibaba:fastjson:1.2.62'
     api 'org.greenrobot:eventbus:3.2.0'
+    api 'com.tencent.sonic:sdk:3.1.0'
+    api 'com.qmuiteam:qmui:2.0.0-alpha10'
     //头条
     api 'me.jessyan:autosize:1.2.1'
     api 'com.github.getActivity:GsonFactory:5.2'
     api 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
     api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
     api  'com.scwang.smart:refresh-header-classics:2.0.3'
+
 }

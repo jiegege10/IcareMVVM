@@ -2,6 +2,7 @@ package com.icare.mvvm.ext
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -77,7 +78,10 @@ fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
         this.setAnimationWithDefault(BaseQuickAdapter.AnimationType.values()[mode - 1])
     }
 }
+fun Intent.singleTop(): Intent =
+    this.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
+fun Intent.single(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }
 // 扩展点击事件属性(重复点击时长)
 var <T : View> T.lastClickTime: Long
     set(value) = setTag(1766613352, value)

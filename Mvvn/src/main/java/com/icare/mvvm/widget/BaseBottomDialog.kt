@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import com.icare.mvvm.R
-abstract class BaseBottomDialog(mContext: Context) : Dialog(
+import com.qmuiteam.qmui.widget.dialog.QMUIDialog
+
+abstract class BaseBottomDialog(mContext: Context) : QMUIDialog(
     mContext, R.style.color_dialog
 ) {
     protected abstract fun init()
