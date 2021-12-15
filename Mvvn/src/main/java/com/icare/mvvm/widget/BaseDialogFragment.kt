@@ -37,7 +37,8 @@ abstract class BaseDialogFragment<VM : BaseViewModel, DB : ViewDataBinding>  : D
         super.onCreate(savedInstanceState)
         mViewModel = createViewModel()
         //全屏
-        setStyle(STYLE_NORMAL, R.style.MyDialog)
+        setStyle(STYLE_NORMAL, R.style.QMUI_Dialog)
+//        setStyle(STYLE_NORMAL, R.style.MyDialog)
 
     }
     /**

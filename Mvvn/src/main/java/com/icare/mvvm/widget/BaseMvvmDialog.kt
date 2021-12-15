@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.icare.mvvm.R
+import com.qmuiteam.qmui.widget.dialog.QMUIBaseDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 
-abstract class BaseMvvmDialog< DB : ViewDataBinding>(mContext: Context) : QMUIDialog(
-    mContext, R.style.color_dialog
+abstract class BaseMvvmDialog< DB : ViewDataBinding>(mContext: Context) : QMUIBaseDialog(
+    mContext, R.style.QMUI_Dialog
 ) {
     lateinit var mDatabind: DB
     protected abstract fun init()
