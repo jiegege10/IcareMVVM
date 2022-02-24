@@ -80,6 +80,8 @@ fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
 }
 fun Intent.singleTop(): Intent =
     this.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+fun Intent.clearTop(): Intent =
+    this.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and  Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
 fun Intent.single(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }
 // 扩展点击事件属性(重复点击时长)

@@ -5,10 +5,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.icare.demo.databinding.ActivityMainBinding
-import com.icare.demo.databinding.ActivityMainBindingImpl
 import com.icare.mvvm.base.activity.BaseVmActivity
 import com.icare.mvvm.base.viewmodel.BaseViewModel
+import com.icare.mvvm.ext.util.logd
 import com.icare.mvvm.util.CommonUtil
+import com.icare.mvvm.util.SharedFlowBus
 import com.luck.picture.lib.tools.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,8 +20,10 @@ class MainActivity : BaseVmActivity<BaseViewModel>() {
     override fun layoutId(): Int = R.layout.activity_main
 
     override fun initView(savedInstanceState: Bundle?) {
-        findViewById<TextView>(R.id.btn).setOnClickListener {
-            showProgressDialog("ssss")
+
+
+        SharedFlowBus.onSticky(String::class.java).observe(this){
+            it.logd("XXXXXXx")
         }
     }
 

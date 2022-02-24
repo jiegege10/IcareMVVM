@@ -75,11 +75,13 @@ dependencies {
     api 'org.greenrobot:eventbus:3.2.0'
     api 'com.tencent.sonic:sdk:3.1.0'
     api 'com.qmuiteam:qmui:2.0.0-alpha10'
+    api 'io.github.youth5201314:banner:2.2.2'
     //头条
     api 'me.jessyan:autosize:1.2.1'
     api 'com.github.getActivity:GsonFactory:5.2'
     api 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
     api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
     api  'com.scwang.smart:refresh-header-classics:2.0.3'
+    api 'com.github.hackware1993:MagicIndicator:1.7.0'
 
 }

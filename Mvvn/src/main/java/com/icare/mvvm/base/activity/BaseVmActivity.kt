@@ -398,7 +398,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         startActivity(Intent(this, clz))
 
     }
+    fun startHome(clz: Class<*>){
 
+    }
     fun startSingleActivity(clz: Class<*>) {
         var intent = Intent(this, clz).singleTop()
         startActivity(intent)

@@ -767,5 +767,31 @@
         <item name="android:windowIsFloating">false</item>
     </style>
 
+    <declare-styleable name="ILayout">
+        <attr name="i_color" format="color|reference"/>
+        <attr name="i_animation_duration" format="integer|reference"/>
+        <attr name="i_auto_start" format="boolean|reference"/>
+        <attr name="i_angle" format="integer|reference"/>
+        <attr name="i_mask_width" format="float|reference"/>
+        <attr name="i_gradient_center_color_width" format="float|reference"/>
+        <attr name="i_reverse_animation" format="boolean|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="IRecyclerView">
+        <attr name="i_demo_layout" format="reference" />
+        <attr name="i_demo_child_count" format="integer|reference" />
+        <attr name="i_demo_layout_manager_type" format="enum">
+            <enum name="linear_vertical" value="0" />
+            <enum name="linear_horizontal" value="1" />
+            <enum name="grid" value="2" />
+        </attr>
+        <attr name="i_demo_grid_child_count" format="integer|reference" />
+        <attr name="i_demo_shimmer_color" format="color|reference" />
+        <attr name="i_demo_angle" format="integer|reference" />
+        <attr name="i_demo_view_holder_item_background" format="color|reference" />
+        <attr name="i_demo_duration" format="integer|reference" />
+        <attr name="i_demo_mask_width" format="float|reference" />
+        <attr name="i_demo_reverse_animation" format="boolean|reference" />
+    </declare-styleable>
 
 </resources>

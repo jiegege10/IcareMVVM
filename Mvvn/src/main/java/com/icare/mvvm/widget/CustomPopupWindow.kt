@@ -16,7 +16,7 @@ import android.widget.PopupWindow
   * @updateDate:     2021/9/2 9:18 上午
  */
 class CustomPopupWindow(var builder: Builder) {
-    private val mPopupWindow: PopupWindow?
+    val mPopupWindow: PopupWindow?
     private val contentView: View =
         LayoutInflater.from(mContext).inflate(builder.contentViewId, null)
 
