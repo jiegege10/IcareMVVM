@@ -14,30 +14,11 @@ import com.luck.picture.lib.tools.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseVmActivity<BaseViewModel>() {
+class MainActivity :AppCompatActivity() {
 
-
-    override fun layoutId(): Int = R.layout.activity_main
-
-    override fun initView(savedInstanceState: Bundle?) {
-
-
-        SharedFlowBus.onSticky(String::class.java).observe(this){
-            it.logd("XXXXXXx")
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
     }
-
-    override fun showLoading(message: String) {
-    }
-
-    override fun dismissLoading() {
-    }
-
-    override fun createObserver() {
-    }
-
-    override fun tokenExpiredObserver(message: String) {
-    }
-
 
 }
