@@ -70,16 +70,24 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.12.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.12.0'
     api 'me.yokeyword:fragmentationx:1.0.2'
-    api 'com.github.getActivity:XXPermissions:11.6'
+    api 'com.github.getActivity:XXPermissions:16.0'
     api 'com.alibaba:fastjson:1.2.62'
-    api 'org.greenrobot:eventbus:3.2.0'
+    api 'org.greenrobot:eventbus:3.3.1'
     api 'com.tencent.sonic:sdk:3.1.0'
-    api 'com.qmuiteam:qmui:2.0.0-alpha10'
+    api 'com.qmuiteam:qmui:2.0.1'
     api 'io.github.youth5201314:banner:2.2.2'
     //头条
     api 'me.jessyan:autosize:1.2.1'
     api 'com.github.getActivity:GsonFactory:5.2'
-    api 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
+
+    api 'io.github.lucksiege:pictureselector:v3.10.6'
+
+    // 图片压缩 (按需引入)
+    api 'io.github.lucksiege:compress:v3.10.6'
+
+    // 图片裁剪 (按需引入)
+    api 'io.github.lucksiege:ucrop:v3.10.6'
+
     api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
     api  'com.scwang.smart:refresh-header-classics:2.0.3'
     api 'com.github.hackware1993:MagicIndicator:1.7.0'
