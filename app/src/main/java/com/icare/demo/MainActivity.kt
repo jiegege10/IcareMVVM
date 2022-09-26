@@ -13,11 +13,30 @@ import com.icare.mvvm.util.SharedFlowBus
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity :AppCompatActivity() {
+class MainActivity : BaseVmActivity<BaseViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+    override fun layoutId(): Int = R.layout.activity_main
+
+    override fun initView(savedInstanceState: Bundle?) {
+
+
+        SharedFlowBus.onSticky(String::class.java).observe(this){
+            it.logd("XXXXXXx")
+        }
     }
+
+    override fun showLoading(message: String) {
+    }
+
+    override fun dismissLoading() {
+    }
+
+    override fun createObserver() {
+    }
+
+    override fun tokenExpiredObserver(message: String) {
+    }
+
 
 }

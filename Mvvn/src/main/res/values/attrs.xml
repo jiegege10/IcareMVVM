@@ -1,0 +1,797 @@
+<resources>
+
+    <style name="color_dialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <!--标题-->
+    <declare-styleable name="RxTitle">
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="titleVisibility" format="boolean" />
+
+        <attr name="leftText" format="string" />
+        <attr name="leftTextColor" format="color" />
+        <attr name="leftTextSize" format="dimension" />
+        <attr name="leftTextVisibility" format="boolean" />
+
+        <attr name="rightText" format="string" />
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightTextSize" format="dimension" />
+        <attr name="rightTextVisibility" format="boolean" />
+
+        <attr name="leftIcon" format="reference" />
+        <attr name="leftIconVisibility" format="boolean" />
+
+        <attr name="rightIcon" format="reference" />
+        <attr name="rightIconVisibility" format="boolean" />
+    </declare-styleable>
+
+    <!-- PopupWindow 动画从下到上 -->
+    <style name="PopAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
+    <style name="PopCenteredAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_center</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_center</item>
+    </style>
+    <!-- Shape 形状（默认是矩形） -->
+    <attr name="shape">
+        <!-- 矩形 -->
+        <enum name="rectangle" value="0" />
+        <!-- 椭圆形 -->
+        <enum name="oval" value="1" />
+        <!-- 线条 -->
+        <enum name="line" value="2" />
+        <!-- 圆环（不支持动态设置，请自定义 xml 来完成需求） -->
+        <!--<enum name="ring" value="3" />-->
+    </attr>
+    <!-- Shape 宽度 -->
+    <attr name="shape_width" format="dimension" />
+    <!-- Shape 高度 -->
+    <attr name="shape_height" format="dimension" />
+
+    <!-- 填充色 -->
+    <attr name="shape_solidColor" format="color|reference" />
+    <!-- 圆角大小 -->
+    <attr name="shape_radius" format="dimension" />
+    <!-- 左上角的圆角大小 -->
+    <attr name="shape_topLeftRadius" format="dimension" />
+    <!-- 右下角的圆角大小 -->
+    <attr name="shape_topRightRadius" format="dimension" />
+    <!-- 左下角的圆角大小 -->
+    <attr name="shape_bottomLeftRadius" format="dimension" />
+    <!-- 右下角的圆角大小 -->
+    <attr name="shape_bottomRightRadius" format="dimension" />
+
+    <!-- 渐变色起始颜色 -->
+    <attr name="shape_startColor" format="color" />
+    <!-- 渐变色中间颜色（可不设置） -->
+    <attr name="shape_centerColor" format="color" />
+    <!-- 渐变色结束颜色 -->
+    <attr name="shape_endColor" format="color" />
+    <!-- 是否将用于缩放渐变 -->
+    <attr name="shape_useLevel" format="boolean" />
+    <!-- 渐变角度（仅用于线性渐变。必须是 0-315 范围内的值，并且是 45 的倍数） -->
+    <attr name="shape_angle" format="float" />
+    <!-- 渐变类型（默认类型是线性渐变） -->
+    <attr name="shape_gradientType">
+        <!-- 线性渐变 -->
+        <enum name="linear" value="0" />
+        <!-- 径向渐变 -->
+        <enum name="radial" value="1" />
+        <!-- 扫描渐变 -->
+        <enum name="sweep"  value="2" />
+    </attr>
+    <!-- 渐变中心 X 点坐标的相对位置（默认值为 0.5）-->
+    <attr name="shape_centerX" format="float|fraction" />
+    <!-- 渐变中心 Y 点坐标的相对位置（默认值为 0.5）-->
+    <attr name="shape_centerY" format="float|fraction" />
+    <!-- 渐变色半径（仅用于径向渐变） -->
+    <attr name="shape_gradientRadius" format="float|fraction|dimension" />
+
+    <!-- 边框颜色 -->
+    <attr name="shape_strokeColor" format="color|reference" />
+    <!-- 边框宽度 -->
+    <attr name="shape_strokeWidth" format="dimension" />
+    <!-- 边框虚线宽度（为 0 就是实线，大于 0 就是虚线） -->
+    <attr name="shape_dashWidth" format="dimension" />
+    <!-- 边框虚线间隔（虚线与虚线之间的间隔） -->
+    <attr name="shape_dashGap" format="dimension" />
+
+    <declare-styleable name="ShapeTextView">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeButton">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+    <declare-styleable name="ShapeEditText">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <declare-styleable name="StyleableToast">
+        <attr name="stTextBold" format="boolean" />
+        <attr name="stTextColor" format="color" />
+        <attr name="stFont" format="reference" />
+        <attr name="stTextSize" format="dimension" />
+        <attr name="stColorBackground" format="color" />
+        <attr name="stSolidBackground" format="boolean" />
+        <attr name="stRadius" format="dimension" />
+        <attr name="stStrokeWidth" format="dimension" />
+        <attr name="stStrokeColor" format="color" />
+        <attr name="stIconStart" format="reference" />
+        <attr name="stIconEnd" format="reference" />
+        <attr name="stLength" format="integer">
+            <enum name="LONG" value="1" />
+            <enum name="SHORT" value="0" />
+        </attr>
+        <attr name="stGravity" format="integer">
+            <enum name="center" value="1" />
+            <enum name="top" value="2" />
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="ShapeLinearLayout">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeFrameLayout">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeRelativeLayout">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeConstraintLayout">
+        <attr name="shape" />
+        <attr name="shape_width" />
+        <attr name="shape_height" />
+        <attr name="shape_solidColor" />
+        <attr name="shape_radius" />
+        <attr name="shape_topLeftRadius" />
+        <attr name="shape_topRightRadius" />
+        <attr name="shape_bottomLeftRadius" />
+        <attr name="shape_bottomRightRadius" />
+        <attr name="shape_startColor" />
+        <attr name="shape_centerColor" />
+        <attr name="shape_endColor" />
+        <attr name="shape_useLevel" />
+        <attr name="shape_angle" />
+        <attr name="shape_gradientType" />
+        <attr name="shape_centerX" />
+        <attr name="shape_centerY" />
+        <attr name="shape_gradientRadius" />
+        <attr name="shape_strokeColor" />
+        <attr name="shape_strokeWidth" />
+        <attr name="shape_dashWidth" />
+        <attr name="shape_dashGap" />
+    </declare-styleable>
+
+    <!-- 圆角是否要自适应为 View 高度的一半 -->
+    <attr name="icare_isRadiusAdjustBounds" format="boolean"/>
+    <!-- 同时指定四个方向的圆角大小 -->
+    <attr name="icare_radius" format="dimension"/>
+    <!-- 指定左上方圆角的大小 -->
+    <attr name="icare_radiusTopLeft" format="dimension"/>
+    <!-- 指定右上方圆角的大小 -->
+    <attr name="icare_radiusTopRight" format="dimension"/>
+    <!-- 指定左下方圆角的大小 -->
+    <attr name="icare_radiusBottomLeft" format="dimension"/>
+    <!-- 指定右下方圆角的大小 -->
+    <attr name="icare_radiusBottomRight" format="dimension"/>
+    <attr name="icare_borderColor" format="color"/>
+    <attr name="ICareButtonStyle" format="reference"/>
+    <attr name="icare_borderWidth" format="dimension"/>
+    <declare-styleable name="ICareTextCommonStyleDef">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:background" />
+        <attr name="android:gravity" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+        <attr name="android:singleLine" />
+        <attr name="android:ellipsize" />
+        <attr name="android:maxLines" />
+        <attr name="android:lineSpacingExtra" />
+        <attr name="android:drawablePadding" />
+        <attr name="android:textColorHint" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+    <declare-styleable name="ICareLayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="icare_bottomDividerHeight" format="dimension" />
+        <attr name="icare_bottomDividerColor" format="color|reference" />
+        <attr name="icare_bottomDividerInsetLeft" format="dimension" />
+        <attr name="icare_bottomDividerInsetRight" format="dimension" />
+        <attr name="icare_topDividerHeight" format="dimension" />
+        <attr name="icare_topDividerColor" format="color|reference" />
+        <attr name="icare_topDividerInsetLeft" format="dimension" />
+        <attr name="icare_topDividerInsetRight" format="dimension" />
+        <attr name="icare_leftDividerWidth" format="dimension" />
+        <attr name="icare_leftDividerColor" format="color|reference" />
+        <attr name="icare_leftDividerInsetTop" format="dimension" />
+        <attr name="icare_leftDividerInsetBottom" format="dimension" />
+        <attr name="icare_rightDividerWidth" format="dimension" />
+        <attr name="icare_rightDividerColor" format="color|reference" />
+        <attr name="icare_rightDividerInsetTop" format="dimension" />
+        <attr name="icare_rightDividerInsetBottom" format="dimension" />
+        <attr name="icare_radius" />
+        <attr name="icare_borderColor" />
+        <attr name="icare_borderWidth" />
+        <attr name="icare_outerNormalColor" format="color|reference" />
+        <attr name="icare_hideRadiusSide" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+            <enum name="left" value="4" />
+        </attr>
+        <attr name="icare_showBorderOnlyBeforeL" format="boolean" />
+        <attr name="icare_shadowElevation" format="dimension" />
+        <attr name="icare_useThemeGeneralShadowElevation" format="boolean" />
+        <attr name="icare_shadowAlpha" format="float" />
+        <attr name="icare_outlineInsetTop" format="dimension" />
+        <attr name="icare_outlineInsetLeft" format="dimension" />
+        <attr name="icare_outlineInsetRight" format="dimension" />
+        <attr name="icare_outlineInsetBottom" format="dimension" />
+        <attr name="icare_outlineExcludePadding" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ICareSuperTextView">
+
+        <attr name="sLeftTextString" format="string" />
+        <attr name="sLeftTopTextString" format="string" />
+        <attr name="sLeftBottomTextString" format="string" />
+
+        <attr name="sCenterTextString" format="string" />
+        <attr name="sCenterTopTextString" format="string" />
+        <attr name="sCenterBottomTextString" format="string" />
+
+        <attr name="sRightTextString" format="string" />
+        <attr name="sRightTopTextString" format="string" />
+        <attr name="sRightBottomTextString" format="string" />
+
+        <!--  -->
+        <attr name="sLeftTextColor" format="color" />
+        <attr name="sLeftTopTextColor" format="color" />
+        <attr name="sLeftBottomTextColor" format="color" />
+
+        <attr name="sCenterTextColor" format="color" />
+        <attr name="sCenterTopTextColor" format="color" />
+        <attr name="sCenterBottomTextColor" format="color" />
+
+        <attr name="sRightTextColor" format="color" />
+        <attr name="sRightTopTextColor" format="color" />
+        <attr name="sRightBottomTextColor" format="color" />
+
+        <!--  -->
+
+        <attr name="sLeftTextSize" format="dimension" />
+        <attr name="sLeftTopTextSize" format="dimension" />
+        <attr name="sLeftBottomTextSize" format="dimension" />
+
+        <attr name="sCenterTextSize" format="dimension" />
+        <attr name="sCenterTopTextSize" format="dimension" />
+        <attr name="sCenterBottomTextSize" format="dimension" />
+
+        <attr name="sRightTextSize" format="dimension" />
+        <attr name="sRightTopTextSize" format="dimension" />
+        <attr name="sRightBottomTextSize" format="dimension" />
+
+        <!--  -->
+        <attr name="sLeftTopLines" format="integer" />
+        <attr name="sLeftLines" format="integer" />
+        <attr name="sLeftBottomLines" format="integer" />
+
+        <attr name="sCenterTopLines" format="integer" />
+        <attr name="sCenterLines" format="integer" />
+        <attr name="sCenterBottomLines" format="integer" />
+
+        <attr name="sRightTopLines" format="integer" />
+        <attr name="sRightLines" format="integer" />
+        <attr name="sRightBottomLines" format="integer" />
+        <!--  -->
+
+        <attr name="sLeftTopMaxEms" format="integer" />
+        <attr name="sLeftMaxEms" format="integer" />
+        <attr name="sLeftBottomMaxEms" format="integer" />
+
+        <attr name="sCenterTopMaxEms" format="integer" />
+        <attr name="sCenterMaxEms" format="integer" />
+        <attr name="sCenterBottomMaxEms" format="integer" />
+
+        <attr name="sRightTopMaxEms" format="integer" />
+        <attr name="sRightMaxEms" format="integer" />
+        <attr name="sRightBottomMaxEms" format="integer" />
+        <!--  -->
+        <attr name="sLeftViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+        <attr name="sCenterViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+        <attr name="sRightViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+        <!--  -->
+        <attr name="sLeftTvDrawableLeft" format="reference" />
+        <attr name="sLeftTvDrawableRight" format="reference" />
+
+        <attr name="sCenterTvDrawableLeft" format="reference" />
+        <attr name="sCenterTvDrawableRight" format="reference" />
+
+        <attr name="sRightTvDrawableLeft" format="reference" />
+        <attr name="sRightTvDrawableRight" format="reference" />
+
+        <attr name="sLeftTvDrawableWidth" format="dimension" />
+        <attr name="sLeftTvDrawableHeight" format="dimension" />
+
+        <attr name="sCenterTvDrawableWidth" format="dimension" />
+        <attr name="sCenterTvDrawableHeight" format="dimension" />
+
+        <attr name="sRightTvDrawableWidth" format="dimension" />
+        <attr name="sRightTvDrawableHeight" format="dimension" />
+
+        <!--  -->
+        <attr name="sTextViewDrawablePadding" format="dimension" />
+        <!--  -->
+        <attr name="sLeftViewWidth" format="dimension" />
+        <!--  -->
+        <attr name="sTopDividerLineMarginLR" format="dimension" />
+        <attr name="sTopDividerLineMarginLeft" format="dimension" />
+        <attr name="sTopDividerLineMarginRight" format="dimension" />
+
+        <attr name="sBottomDividerLineMarginLR" format="dimension" />
+        <attr name="sBottomDividerLineMarginLeft" format="dimension" />
+        <attr name="sBottomDividerLineMarginRight" format="dimension" />
+        <!--  -->
+        <attr name="sDividerLineColor" format="color" />
+        <attr name="sDividerLineHeight" format="dimension" />
+        <attr name="sDividerLineType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+        <!--  -->
+        <attr name="sLeftViewMarginLeft" format="dimension" />
+        <attr name="sLeftViewMarginRight" format="dimension" />
+        <attr name="sCenterViewMarginLeft" format="dimension" />
+        <attr name="sCenterViewMarginRight" format="dimension" />
+        <attr name="sRightViewMarginLeft" format="dimension" />
+        <attr name="sRightViewMarginRight" format="dimension" />
+        <!-- 自定义属性超过128个导致布局无法预览，故暂时去除不重要的属性 -->
+        <attr name="sLeftTopTextIsBold" format="boolean" />
+        <attr name="sLeftTextIsBold" format="boolean" />
+        <attr name="sLeftBottomTextIsBold" format="boolean" />
+
+        <attr name="sCenterTopTextIsBold" format="boolean" />
+        <attr name="sCenterTextIsBold" format="boolean" />
+        <attr name="sCenterBottomTextIsBold" format="boolean" />
+
+        <attr name="sRightTopTextIsBold" format="boolean" />
+        <attr name="sRightTextIsBold" format="boolean" />
+        <attr name="sRightBottomTextIsBold" format="boolean" />
+
+        <attr name="sLeftTextBackground" format="reference" />
+        <attr name="sCenterTextBackground" format="reference" />
+        <attr name="sRightTextBackground" format="reference" />
+
+        <!--  -->
+
+        <attr name="sLeftIconRes" format="reference" />
+        <attr name="sRightIconRes" format="reference" />
+
+        <attr name="sLeftIconWidth" format="dimension" />
+        <attr name="sLeftIconHeight" format="dimension" />
+
+        <attr name="sRightIconWidth" format="dimension" />
+        <attr name="sRightIconHeight" format="dimension" />
+
+
+        <attr name="sCenterSpaceHeight" format="dimension" />
+
+        <attr name="sLeftIconMarginLeft" format="dimension" />
+        <attr name="sRightIconMarginRight" format="dimension" />
+
+        <attr name="sRightViewType" format="enum">
+            <enum name="checkbox" value="0" />
+            <enum name="switchBtn" value="1" />
+            <enum name="edittext" value="2" />
+        </attr>
+
+        <attr name="sRightCheckBoxRes" format="reference" />
+        <attr name="sRightCheckBoxMarginRight" format="dimension" />
+        <attr name="sIsChecked" format="boolean" />
+
+        <attr name="sRightSwitchMarginRight" format="dimension" />
+        <attr name="sSwitchIsChecked" format="boolean" />
+
+        <attr name="sTextOff" format="string" />
+        <attr name="sTextOn" format="string" />
+
+        <attr name="sSwitchMinWidth" format="dimension" />
+        <attr name="sSwitchPadding" format="dimension" />
+        <attr name="sThumbTextPadding" format="dimension" />
+
+        <attr name="sThumbResource" format="reference" />
+        <attr name="sTrackResource" format="reference" />
+
+        <attr name="sUseRipple" format="boolean" />
+
+        <attr name="sBackgroundDrawableRes" format="reference" />
+        <!--  -->
+
+        <attr name="sShapeSolidColor" format="color" />
+
+        <attr name="sShapeSelectorPressedColor" format="color" />
+        <attr name="sShapeSelectorNormalColor" format="color" />
+
+        <attr name="sShapeCornersRadius" format="dimension" />
+
+        <attr name="sShapeCornersTopLeftRadius" format="dimension" />
+        <attr name="sShapeCornersTopRightRadius" format="dimension" />
+        <attr name="sShapeCornersBottomLeftRadius" format="dimension" />
+        <attr name="sShapeCornersBottomRightRadius" format="dimension" />
+
+        <attr name="sShapeStrokeWidth" format="dimension" />
+        <attr name="sShapeStrokeDashWidth" format="dimension" />
+        <attr name="sShapeStrokeDashGap" format="dimension" />
+        <attr name="sShapeStrokeColor" format="color" />
+
+        <attr name="sUseShape" format="boolean" />
+
+        <attr name="sLeftTextGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="sCenterTextGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="sRightTextGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="sLeftIconShowCircle" format="boolean" />
+        <attr name="sRightIconShowCircle" format="boolean" />
+
+        <attr name="sEditMinWidth" format="dimension"/>
+        <attr name="sEditMarginRight" format="dimension" />
+        <attr name="android:imeOptions"/>
+        <attr name="android:inputType"/>
+        <attr name="sEditCursorDrawable" format="reference"/>
+        <attr name="sEditCursorVisible" format="boolean"/>
+        <attr name="sEditHint" format="string"/>
+        <attr name="sEditHintTextColor" format="color"/>
+        <attr name="sEditTextColor" format="color"/>
+        <attr name="sEditTextSize" format="dimension"/>
+        <attr name="sEditActiveLineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ICareCommonTextView">
+
+        <attr name="cLeftIconResForDrawableLeft" format="reference" />
+        <attr name="cLeftIconResForDrawableTop" format="reference" />
+        <attr name="cLeftIconResForDrawableRight" format="reference" />
+        <attr name="cLeftIconResForDrawableBottom" format="reference" />
+
+        <attr name="cCenterIconResForDrawableLeft" format="reference" />
+        <attr name="cCenterIconResForDrawableTop" format="reference" />
+        <attr name="cCenterIconResForDrawableRight" format="reference" />
+        <attr name="cCenterIconResForDrawableBottom" format="reference" />
+
+        <attr name="cRightIconResForDrawableLeft" format="reference" />
+        <attr name="cRightIconResForDrawableTop" format="reference" />
+        <attr name="cRightIconResForDrawableRight" format="reference" />
+        <attr name="cRightIconResForDrawableBottom" format="reference" />
+
+        <attr name="cLeftImageViewDrawableRes" format="reference" />
+        <!--<attr name="cRightImageViewDrawableRes" format="reference" />-->
+
+
+        <attr name="cLeftTextString" format="string" />
+        <attr name="cLeftTopTextString" format="string" />
+        <attr name="cLeftBottomTextString" format="string" />
+
+        <attr name="cCenterTextString" format="string" />
+        <attr name="cCenterTopTextString" format="string" />
+        <attr name="cCenterBottomTextString" format="string" />
+
+        <attr name="cRightTextString" format="string" />
+        <attr name="cRightTopTextString" format="string" />
+        <attr name="cRightBottomTextString" format="string" />
+
+        <attr name="cLeftTextSize" format="dimension" />
+        <attr name="cLeftTopTextSize" format="dimension" />
+        <attr name="cLeftBottomTextSize" format="dimension" />
+
+        <attr name="cCenterTextSize" format="dimension" />
+        <attr name="cCenterTopTextSize" format="dimension" />
+        <attr name="cCenterBottomTextSize" format="dimension" />
+
+        <attr name="cRightTextSize" format="dimension" />
+        <attr name="cRightTopTextSize" format="dimension" />
+        <attr name="cRightBottomTextSize" format="dimension" />
+
+        <attr name="cLeftTextColor" format="color" />
+        <attr name="cLeftTopTextColor" format="color" />
+        <attr name="cLeftBottomTextColor" format="color" />
+
+        <attr name="cCenterTextColor" format="color" />
+        <attr name="cCenterTopTextColor" format="color" />
+        <attr name="cCenterBottomTextColor" format="color" />
+
+        <attr name="cRightTextColor" format="color" />
+        <attr name="cRightTopTextColor" format="color" />
+        <attr name="cRightBottomTextColor" format="color" />
+
+        <attr name="cLeftIconDrawablePadding" format="dimension" />
+        <attr name="cCenterIconDrawablePadding" format="dimension" />
+        <attr name="cRightIconDrawablePadding" format="dimension" />
+
+        <attr name="cLeftViewPaddingLeft" format="dimension" />
+        <attr name="cLeftViewPaddingRight" format="dimension" />
+        <attr name="cCenterViewPaddingLeft" format="dimension" />
+        <attr name="cCenterViewPaddingRight" format="dimension" />
+        <attr name="cRightViewPaddingLeft" format="dimension" />
+        <attr name="cRightViewPaddingRight" format="dimension" />
+
+        <attr name="cTopDividerLineMarginLR" format="dimension" />
+        <attr name="cTopDividerLineMarginLeft" format="dimension" />
+        <attr name="cTopDividerLineMarginRight" format="dimension" />
+
+        <attr name="cBottomDividerLineMarginLR" format="dimension" />
+        <attr name="cBottomDividerLineMarginLeft" format="dimension" />
+        <attr name="cBottomDividerLineMarginRight" format="dimension" />
+
+        <attr name="cBothDividerLineMarginLeft" format="dimension" />
+        <attr name="cBothDividerLineMarginRight" format="dimension" />
+
+
+        <attr name="cLeftTextViewLineSpacingExtra" format="dimension" />
+        <attr name="cCenterTextViewLineSpacingExtra" format="dimension" />
+        <attr name="cRightTextViewLineSpacingExtra" format="dimension" />
+
+        <attr name="cCenterSpaceHeight" format="dimension" />
+
+        <attr name="cLeftImageViewMarginLeft" format="dimension" />
+        <!--<attr name="cRightImageViewMarginRight" format="dimension" />-->
+
+        <attr name="cDividerLineColor" format="color" />
+        <attr name="cDividerLineHeight" format="dimension" />
+
+        <attr name="cShowDividerLineType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+
+        <attr name="cUseRipple" format="boolean" />
+        <attr name="cBackgroundColor" format="color" />
+
+        <attr name="cSetSingleLine" format="boolean" />
+        <attr name="cSetMaxEms" format="integer" />
+        <attr name="cSetLines" format="integer" />
+
+        <attr name="cLeftTextViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+        <attr name="cCenterTextViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+        <attr name="cRightTextViewGravity" format="enum">
+            <enum name="left_center" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right_center" value="2" />
+        </attr>
+
+        <attr name="cLeftViewIsClickable" format="boolean" />
+        <attr name="cCenterViewIsClickable" format="boolean" />
+        <attr name="cRightViewIsClickable" format="boolean" />
+
+        <attr name="cBackgroundDrawableRes" format="reference" />
+        <attr name="cIsCenterAlignLeft" format="boolean" />
+        <attr name="cCenterViewMarginLeft" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <!-- {@deprecated Use civ_circlebackground_color instead.} -->
+        <attr name="civ_fill_color" format="color" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+
+    <style name="MyDialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <declare-styleable name="ILayout">
+        <attr name="i_color" format="color|reference"/>
+        <attr name="i_animation_duration" format="integer|reference"/>
+        <attr name="i_auto_start" format="boolean|reference"/>
+        <attr name="i_angle" format="integer|reference"/>
+        <attr name="i_mask_width" format="float|reference"/>
+        <attr name="i_gradient_center_color_width" format="float|reference"/>
+        <attr name="i_reverse_animation" format="boolean|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="IRecyclerView">
+        <attr name="i_demo_layout" format="reference" />
+        <attr name="i_demo_child_count" format="integer|reference" />
+        <attr name="i_demo_layout_manager_type" format="enum">
+            <enum name="linear_vertical" value="0" />
+            <enum name="linear_horizontal" value="1" />
+            <enum name="grid" value="2" />
+        </attr>
+        <attr name="i_demo_grid_child_count" format="integer|reference" />
+        <attr name="i_demo_shimmer_color" format="color|reference" />
+        <attr name="i_demo_angle" format="integer|reference" />
+        <attr name="i_demo_view_holder_item_background" format="color|reference" />
+        <attr name="i_demo_duration" format="integer|reference" />
+        <attr name="i_demo_mask_width" format="float|reference" />
+        <attr name="i_demo_reverse_animation" format="boolean|reference" />
+    </declare-styleable>
+
+</resources>
