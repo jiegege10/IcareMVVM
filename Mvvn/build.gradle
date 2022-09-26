@@ -75,6 +75,7 @@ dependencies {
     api 'org.greenrobot:eventbus:3.3.1'
     api 'com.tencent.sonic:sdk:3.1.0'
     api 'com.qmuiteam:qmui:2.0.1'
+//    api 'com.github.Tencent.QMUI_Android:arch:2.0.1'
     api 'io.github.youth5201314:banner:2.2.2'
     //头条
     api 'me.jessyan:autosize:1.2.1'
