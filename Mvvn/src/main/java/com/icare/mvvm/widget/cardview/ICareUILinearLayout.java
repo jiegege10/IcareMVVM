@@ -6,8 +6,12 @@ import android.util.AttributeSet;
 
 import androidx.annotation.ColorInt;
 
-public class ICareUILinearLayout extends ICareUIAlphaLinearLayout implements ICareLayout {
-    private ICareUILayoutHelper mLayoutHelper;
+import com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout;
+import com.qmuiteam.qmui.layout.IQMUILayout;
+import com.qmuiteam.qmui.layout.QMUILayoutHelper;
+
+public class ICareUILinearLayout extends QMUIAlphaLinearLayout implements IQMUILayout {
+    private QMUILayoutHelper mLayoutHelper;
 
     public ICareUILinearLayout(Context context) {
         super(context);
@@ -25,7 +29,7 @@ public class ICareUILinearLayout extends ICareUIAlphaLinearLayout implements ICa
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        mLayoutHelper = new ICareUILayoutHelper(context, attrs, defStyleAttr, this);
+        mLayoutHelper = new QMUILayoutHelper(context, attrs, defStyleAttr, this);
         setChangeAlphaWhenPress(false);
         setChangeAlphaWhenDisable(false);
     }
