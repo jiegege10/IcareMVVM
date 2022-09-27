@@ -15,9 +15,6 @@
         <com.icare.mvvm.widget.cardview.ICareUILinearLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:qmui_shadowAlpha="0.5"
-            app:qmui_radius="10dp"
-            app:qmui_shadowElevation="14dp"
             android:background="@color/white"
             android:layout_margin="100dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
