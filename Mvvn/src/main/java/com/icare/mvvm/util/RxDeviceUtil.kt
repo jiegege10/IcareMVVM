@@ -146,7 +146,7 @@ object RxDeviceTool {
             Toast.makeText(context,"请先获取读取手机设备权限",Toast.LENGTH_SHORT).show()
             return null
         }
-        id = if (mTelephony.getDeviceSoftwareVersion() != null) {
+        id = if (mTelephony.deviceId != null) {
             mTelephony.deviceId
         } else {
             //android.provider.Settings;
