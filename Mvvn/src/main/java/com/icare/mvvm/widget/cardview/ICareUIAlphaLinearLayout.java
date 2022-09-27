@@ -4,9 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-public class ICareUIAlphaLinearLayout extends LinearLayout implements ICareAlphaViewInf {
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewHelper;
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewInf;
 
-    private ICareAlphaViewHelper mAlphaViewHelper;
+public class ICareUIAlphaLinearLayout extends LinearLayout implements QMUIAlphaViewInf {
+
+    private QMUIAlphaViewHelper mAlphaViewHelper;
 
     public ICareUIAlphaLinearLayout(Context context) {
         super(context);
@@ -20,9 +23,9 @@ public class ICareUIAlphaLinearLayout extends LinearLayout implements ICareAlpha
         super(context, attrs, defStyleAttr);
     }
 
-    private ICareAlphaViewHelper getAlphaViewHelper() {
+    private QMUIAlphaViewHelper getAlphaViewHelper() {
         if (mAlphaViewHelper == null) {
-            mAlphaViewHelper = new ICareAlphaViewHelper(this);
+            mAlphaViewHelper = new QMUIAlphaViewHelper(this);
         }
         return mAlphaViewHelper;
     }

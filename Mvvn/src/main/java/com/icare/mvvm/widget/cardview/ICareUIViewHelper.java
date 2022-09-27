@@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.icare.mvvm.R;
+import com.qmuiteam.qmui.util.QMUIViewOffsetHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -427,7 +428,7 @@ public class ICareUIViewHelper {
 
     public static void updateChildrenOffsetHelperOnLayout(@NonNull ViewGroup viewGroup){
         View view;
-        ICareUIViewOffsetHelper offsetHelper;
+        QMUIViewOffsetHelper offsetHelper;
         for(int i = 0; i < viewGroup.getChildCount(); i++){
             view = viewGroup.getChildAt(i);
             offsetHelper = getOffsetHelper(view);
@@ -438,21 +439,21 @@ public class ICareUIViewHelper {
     }
 
     @Nullable
-    public static ICareUIViewOffsetHelper getOffsetHelper(@NonNull View view){
+    public static QMUIViewOffsetHelper getOffsetHelper(@NonNull View view){
         Object tag = view.getTag(R.id.icare_view_offset_helper);
-        if(tag instanceof ICareUIViewOffsetHelper){
-            return (ICareUIViewOffsetHelper) tag;
+        if(tag instanceof QMUIViewOffsetHelper){
+            return (QMUIViewOffsetHelper) tag;
         }
         return null;
     }
 
     @NonNull
-    public static ICareUIViewOffsetHelper getOrCreateOffsetHelper(@NonNull View view){
+    public static QMUIViewOffsetHelper getOrCreateOffsetHelper(@NonNull View view){
         Object tag = view.getTag(R.id.icare_view_offset_helper);
-        if(tag instanceof ICareUIViewOffsetHelper){
-            return (ICareUIViewOffsetHelper) tag;
+        if(tag instanceof QMUIViewOffsetHelper){
+            return (QMUIViewOffsetHelper) tag;
         }else{
-            ICareUIViewOffsetHelper ret = new ICareUIViewOffsetHelper(view);
+            QMUIViewOffsetHelper ret = new QMUIViewOffsetHelper(view);
             view.setTag(R.id.icare_view_offset_helper, ret);
             return ret;
         }

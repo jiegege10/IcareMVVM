@@ -5,9 +5,12 @@ import android.util.AttributeSet;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class ICareUIAlphaConstraintLayout extends ConstraintLayout implements ICareAlphaViewInf {
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewHelper;
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewInf;
 
-    private ICareAlphaViewHelper mAlphaViewHelper;
+public class ICareUIAlphaConstraintLayout extends ConstraintLayout implements QMUIAlphaViewInf {
+
+    private QMUIAlphaViewHelper mAlphaViewHelper;
 
     public ICareUIAlphaConstraintLayout(Context context) {
         super(context);
@@ -21,9 +24,9 @@ public class ICareUIAlphaConstraintLayout extends ConstraintLayout implements IC
         super(context, attrs, defStyleAttr);
     }
 
-    private ICareAlphaViewHelper getAlphaViewHelper() {
+    private QMUIAlphaViewHelper getAlphaViewHelper() {
         if (mAlphaViewHelper == null) {
-            mAlphaViewHelper = new ICareAlphaViewHelper(this);
+            mAlphaViewHelper = new QMUIAlphaViewHelper(this);
         }
         return mAlphaViewHelper;
     }

@@ -124,7 +124,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
                 // this only happen when a same sonic session is already running,
                 // u can comment following codes to feedback as a default mode.
                 // throw new UnknownError("create session fail!");
-                Toast.makeText(this, "create sonic session fail!", Toast.LENGTH_LONG).show()
+                showToast("create sonic session fail!")
             }
         }
         webView.webViewClient = object : WebViewClient() {
@@ -358,7 +358,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
         mWaitPorgressDialog =
             QMUITipDialog.Builder(this)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                .setTipWord("正在加载")
+                .setTipWord(msg)
                 .create()
         mWaitPorgressDialog?.show()
     }

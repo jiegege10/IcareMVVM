@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewHelper;
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewInf;
 
-public class ICareUIAlphaFrameLayout extends FrameLayout implements ICareAlphaViewInf {
 
-    private ICareAlphaViewHelper mAlphaViewHelper;
+public class ICareUIAlphaFrameLayout extends FrameLayout implements QMUIAlphaViewInf {
+
+    private QMUIAlphaViewHelper mAlphaViewHelper;
 
     public ICareUIAlphaFrameLayout(Context context) {
         super(context);
@@ -22,9 +24,9 @@ public class ICareUIAlphaFrameLayout extends FrameLayout implements ICareAlphaVi
         super(context, attrs, defStyleAttr);
     }
 
-    private ICareAlphaViewHelper getAlphaViewHelper() {
+    private QMUIAlphaViewHelper getAlphaViewHelper() {
         if (mAlphaViewHelper == null) {
-            mAlphaViewHelper = new ICareAlphaViewHelper(this);
+            mAlphaViewHelper = new QMUIAlphaViewHelper(this);
         }
         return mAlphaViewHelper;
     }

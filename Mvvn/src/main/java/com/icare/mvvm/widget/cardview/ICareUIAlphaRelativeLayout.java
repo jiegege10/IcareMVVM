@@ -6,9 +6,12 @@ import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class ICareUIAlphaRelativeLayout extends RelativeLayout implements ICareAlphaViewInf {
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewHelper;
+import com.qmuiteam.qmui.alpha.QMUIAlphaViewInf;
 
-    private ICareAlphaViewHelper mAlphaViewHelper;
+public class ICareUIAlphaRelativeLayout extends RelativeLayout implements QMUIAlphaViewInf {
+
+    private QMUIAlphaViewHelper mAlphaViewHelper;
 
     public ICareUIAlphaRelativeLayout(Context context) {
         super(context);
@@ -22,9 +25,9 @@ public class ICareUIAlphaRelativeLayout extends RelativeLayout implements ICareA
         super(context, attrs, defStyleAttr);
     }
 
-    private ICareAlphaViewHelper getAlphaViewHelper() {
+    private QMUIAlphaViewHelper getAlphaViewHelper() {
         if (mAlphaViewHelper == null) {
-            mAlphaViewHelper = new ICareAlphaViewHelper(this);
+            mAlphaViewHelper = new QMUIAlphaViewHelper(this);
         }
         return mAlphaViewHelper;
     }

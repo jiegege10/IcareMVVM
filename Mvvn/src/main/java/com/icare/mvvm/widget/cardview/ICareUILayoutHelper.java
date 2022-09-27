@@ -23,6 +23,7 @@ import com.icare.mvvm.R;
 import com.icare.mvvm.base.BaseApp;
 import com.icare.mvvm.util.CommonUtil;
 import com.icare.mvvm.util.LogUtils;
+import com.qmuiteam.qmui.util.QMUIResHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -102,7 +103,7 @@ public class ICareUILayoutHelper implements ICareLayout {
         mMode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
         mClipPaint = new Paint();
         mClipPaint.setAntiAlias(true);
-        mShadowAlpha = ICareUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha)==0.0?0.4f: ICareUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha);
+        mShadowAlpha = QMUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha)==0.0?0.4f: QMUIResHelper.getAttrFloatValue(context, R.attr.icare_general_shadow_alpha);
         mBorderRect = new RectF();
 
         int radius =  CommonUtil.INSTANCE.dp2px(context,10), shadow =  CommonUtil.INSTANCE.dp2px(context,20);
@@ -185,7 +186,7 @@ public class ICareUILayoutHelper implements ICareLayout {
             ta.recycle();
         }
         if (shadow == 0 && useThemeGeneralShadowElevation) {
-            shadow = ICareUIResHelper.getAttrDimen(context, R.attr.icare_general_shadow_elevation);
+            shadow = QMUIResHelper.getAttrDimen(context, R.attr.icare_general_shadow_elevation);
 
         }
         setRadiusAndShadow(radius, mHideRadiusSide, shadow, mShadowAlpha);
@@ -193,7 +194,7 @@ public class ICareUILayoutHelper implements ICareLayout {
 
     @Override
     public void setUseThemeGeneralShadowElevation() {
-        mShadowElevation = ICareUIResHelper.getAttrDimen(mContext, R.attr.icare_general_shadow_elevation);
+        mShadowElevation = QMUIResHelper.getAttrDimen(mContext, R.attr.icare_general_shadow_elevation);
         setRadiusAndShadow(mRadius, mHideRadiusSide, mShadowElevation, mShadowAlpha);
     }
 
