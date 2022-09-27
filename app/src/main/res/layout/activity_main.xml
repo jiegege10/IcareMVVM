@@ -6,9 +6,19 @@
     </data>
 
 
-    <com.icare.mvvm.widget.IRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:background="@color/white"
+        android:layout_height="match_parent" >
+        <com.icare.mvvm.widget.cardview.ICareUILinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:qmui_shadowAlpha="0.5"
+            app:qmui_radius="10dp"
+            app:qmui_shadowElevation="14dp"
+            android:background="@color/white"
+            android:layout_margin="100dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

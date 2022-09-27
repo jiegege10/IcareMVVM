@@ -19,11 +19,11 @@ class MainActivity : BaseVmActivity<BaseViewModel>() {
     override fun layoutId(): Int = R.layout.activity_main
 
     override fun initView(savedInstanceState: Bundle?) {
-
-
-        SharedFlowBus.onSticky(String::class.java).observe(this){
-            it.logd("XXXXXXx")
-        }
+//
+//
+//        SharedFlowBus.onSticky(String::class.java).observe(this){
+//            it.logd("XXXXXXx")
+//        }
     }
 
     override fun showLoading(message: String) {
