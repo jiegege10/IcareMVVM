@@ -43,8 +43,31 @@ android {
         abortOnError false
     }
 
-}
 
+}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                // The following applies a component to this publication
+//                // which results in publishing an app bundle.
+//                from components.release
+//
+//                groupId = 'com.github.450951286@qq.com'
+//                artifactId = 'IcareMVVM'
+//                version = '1.0.0'
+//            }
+//            debug(MavenPublication) {
+//                // The following applies a component to this publication
+//                // which results in publishing APKs in a ZIP file.
+//                from components.debug
+//                groupId = 'com.github.450951286@qq.com'
+//                artifactId = 'IcareMVVM'
+//                version = '1.0.0'
+//            }
+//        }
+//    }
+//}
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.google.android.material:material:1.4.0'

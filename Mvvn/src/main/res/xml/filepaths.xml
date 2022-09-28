@@ -2,7 +2,6 @@
 <paths>
     <!-- external-path:sd ；path:你的应用保存文件的根目录；name随便定义-->
     <!-- root-path 手机存储根目录 -->
-    <!--<root-path path="" name="ubank" />-->
     <root-path name="app_root_path" path="/"/>
     <external-path name="app_external_path" path="/"/>
     <external-path name="app_updater_path" path=".AppUpdater/"/>
