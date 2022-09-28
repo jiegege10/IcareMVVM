@@ -2,19 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'maven-publish'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.450951286@qq.com'
 
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 31
-        versionCode 2
-        versionName "0.0.2"
+        targetSdkVersion 32
+        versionCode 3
+        versionName "0.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
