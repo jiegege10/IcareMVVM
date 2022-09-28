@@ -170,7 +170,7 @@ fun <T> BaseViewModel.request(
                         success(it)
                     }
                 } catch (e: Exception) {
-                    e.toJson()?.loge("ajie")
+                    e.toJson().loge("------->")
                 }
 
             }.onFailure { e ->
@@ -218,7 +218,7 @@ fun <T> BaseViewModel.requestNoCheck(
                 //成功回调
                 success(it)
             } catch (e: Exception) {
-                e.toJson()?.loge("ajie")
+                e.toJson().loge("------->")
             }
 
         }.onFailure {
