@@ -64,7 +64,11 @@ class IRecyclerView : RecyclerView {
         init(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    ) {
         init(context, attrs)
     }
 
@@ -80,7 +84,12 @@ class IRecyclerView : RecyclerView {
         val mShimmerItemBackground: Drawable?
 
         try {
-            setDemoLayoutReference(a.getResourceId(R.styleable.IRecyclerView_i_demo_layout, R.layout.layout_sample_view))
+            setDemoLayoutReference(
+                a.getResourceId(
+                    R.styleable.IRecyclerView_i_demo_layout,
+                    R.layout.layout_sample_view
+                )
+            )
             setDemoChildCount(a.getInteger(R.styleable.IRecyclerView_i_demo_child_count, 10))
             setGridChildCount(a.getInteger(R.styleable.IRecyclerView_i_demo_grid_child_count, 2))
 
@@ -93,11 +102,16 @@ class IRecyclerView : RecyclerView {
             }
 
             mShimmerAngle = a.getInteger(R.styleable.IRecyclerView_i_demo_angle, 0)
-            mShimmerColor = a.getColor(R.styleable.IRecyclerView_i_demo_shimmer_color, getColor(R.color.color_f2))
-            mShimmerItemBackground = a.getDrawable(R.styleable.IRecyclerView_i_demo_view_holder_item_background)
+            mShimmerColor = a.getColor(
+                R.styleable.IRecyclerView_i_demo_shimmer_color,
+                getColor(R.color.color_f2)
+            )
+            mShimmerItemBackground =
+                a.getDrawable(R.styleable.IRecyclerView_i_demo_view_holder_item_background)
             mShimmerDuration = a.getInteger(R.styleable.IRecyclerView_i_demo_duration, 1500)
             mShimmerMaskWidth = a.getFloat(R.styleable.IRecyclerView_i_demo_mask_width, 0.5f)
-            isAnimationReversed = a.getBoolean(R.styleable.IRecyclerView_i_demo_reverse_animation, false)
+            isAnimationReversed =
+                a.getBoolean(R.styleable.IRecyclerView_i_demo_reverse_animation, false)
         } finally {
             a.recycle()
         }
@@ -214,29 +228,35 @@ class IRecyclerView : RecyclerView {
 
     private fun initShimmerManager() {
         when (mLayoutMangerType) {
-            LayoutMangerType.LINEAR_VERTICAL -> mShimmerLayoutManager = object : LinearLayoutManager(context) {
-                override fun canScrollVertically(): Boolean {
-                    return mCanScroll
+            LayoutMangerType.LINEAR_VERTICAL -> mShimmerLayoutManager =
+                object : LinearLayoutManager(context) {
+                    override fun canScrollVertically(): Boolean {
+                        return mCanScroll
+                    }
                 }
-            }
-            LayoutMangerType.LINEAR_HORIZONTAL -> mShimmerLayoutManager = object : LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) {
-                override fun canScrollHorizontally(): Boolean {
-                    return mCanScroll
+            LayoutMangerType.LINEAR_HORIZONTAL -> mShimmerLayoutManager =
+                object : LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) {
+                    override fun canScrollHorizontally(): Boolean {
+                        return mCanScroll
+                    }
                 }
-            }
-            LayoutMangerType.GRID -> mShimmerLayoutManager = object : GridLayoutManager(context, mGridCount) {
-                override fun canScrollVertically(): Boolean {
-                    return mCanScroll
+            LayoutMangerType.GRID -> mShimmerLayoutManager =
+                object : GridLayoutManager(context, mGridCount) {
+                    override fun canScrollVertically(): Boolean {
+                        return mCanScroll
+                    }
                 }
+            else -> {
+
             }
         }
     }
 
     private fun getColor(id: Int) =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                context.getColor(id)
-            } else {
-                resources.getColor(id)
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            context.getColor(id)
+        } else {
+            resources.getColor(id)
+        }
 
 }
