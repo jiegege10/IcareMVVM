@@ -10,8 +10,6 @@ import com.icare.mvvm.base.viewmodel.BaseViewModel
 import com.icare.mvvm.ext.util.logd
 import com.icare.mvvm.util.CommonUtil
 import com.icare.mvvm.util.SharedFlowBus
-import com.luck.picture.lib.tools.ToastUtils
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseVmActivity<BaseViewModel>() {

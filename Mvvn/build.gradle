@@ -60,7 +60,7 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:2.9.0"
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     api 'me.jessyan:retrofit-url-manager:1.4.0'
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     api 'androidx.multidex:multidex:2.0.1'
 //    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     api 'com.squareup.okhttp3:logging-interceptor:4.9.3'
@@ -79,7 +79,14 @@ dependencies {
     //头条
     api 'me.jessyan:autosize:1.2.1'
     api 'com.github.getActivity:GsonFactory:5.2'
-    api 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
+    // PictureSelector basic (Necessary)
+    api 'io.github.lucksiege:pictureselector:v3.10.7'
+
+    // image compress library (Not necessary)
+    api 'io.github.lucksiege:compress:v3.10.7'
+
+    // uCrop library (Not necessary)
+    api 'io.github.lucksiege:ucrop:v3.10.7'
     api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
     api  'com.scwang.smart:refresh-header-classics:2.0.3'
     api 'com.github.hackware1993:MagicIndicator:1.7.0'

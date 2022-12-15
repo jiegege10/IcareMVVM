@@ -22,9 +22,19 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.icare.mvvm.R
 import com.icare.mvvm.base.BaseApp
-import com.luck.picture.lib.PictureSelector
+import com.icare.mvvm.listener.OnPictureListener
+import com.icare.mvvm.widget.GlideEngine
+import com.icare.mvvm.widget.ImageFileCompressEngine
+import com.icare.mvvm.widget.ImageFileCropEngine
+import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.config.SelectMimeType
+import com.luck.picture.lib.config.SelectMimeType.ofImage
+import com.luck.picture.lib.config.SelectModeConfig
+import com.luck.picture.lib.config.SelectModeConfig.SINGLE
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -239,33 +249,20 @@ object CommonUtil {
         activity: Activity,
         max: Int = 1,
         min: Int = 1,
-        mode: Int = PictureConfig.SINGLE,
-        isCamera: Boolean = false,
-        isZoomAnim: Boolean = true,
-        isEnableCrop: Boolean = false,
-        isCompress: Boolean = true,
-        minimumCompressSize: Int = 100,
+        mode: Int = SelectModeConfig.SINGLE,
     ) {
         PictureSelector.create(activity)
-            .openGallery(PictureMimeType.ofImage()) // 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
-            .theme(R.style.picture_default_style)
-            .maxSelectNum(max) // 最大图片选择数量
-            .minSelectNum(min) // 最小选择数量
-            .imageSpanCount(4) // 每行显示个数
-            .selectionMode(mode) // 多选 or 单选
-            .isCamera(isCamera) // 是否显示拍照按钮
-            .isZoomAnim(isZoomAnim) // 图片列表点击 缩放效果 默认true
-            .isEnableCrop(isEnableCrop)
-            .isAndroidQTransform(true)
-            .compressSavePath(getPath())
-            .imageEngine(GlideEngine.createGlideEngine())
-            .isCompress(isCompress) // 是否压缩
-            .withAspectRatio(1, 1) // 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-            .hideBottomControls(false) // 是否显示uCrop工具栏，默认不显示
-            .freeStyleCropEnabled(false) // 裁剪框是否可拖拽
-            .circleDimmedLayer(false) // 是否圆形裁剪
-            .minimumCompressSize(minimumCompressSize) // 小于100kb的图片不压缩
-            .forResult(type) //结果回调onActivityResult code
+            .openGallery(SelectMimeType.ofImage())// 全部.SelectMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+            .setImageEngine(GlideEngine.createGlideEngine())
+            .setMaxSelectNum(max)// 最大图片选择数量
+            .setMinSelectNum(min)// 最小选择数量
+            .setImageSpanCount(4)// 每行显示个数
+            .setSelectionMode(mode)// 多选 or 单选
+            .isSelectZoomAnim(true)// 图片列表点击 缩放效果 默认true
+            .setCropEngine(ImageFileCropEngine())// 是否裁剪
+            .setCompressEngine(ImageFileCompressEngine())
+            .forResult(type)
+
     }
 
     /**
@@ -277,27 +274,23 @@ object CommonUtil {
     fun openCamera(
         type: Int,
         activity: Activity,
-        isCompress: Boolean = true,
-        isPreviewImage: Boolean = true,
-        isEnableCrop: Boolean = false,
-        minimumCompressSize: Int = 100,
+        ll: OnPictureListener
     ) {
         PictureSelector.create(activity)
-            .openCamera(PictureMimeType.ofImage()) // 单独拍照，也可录像或也可音频 看你传入的类型是图片or视频
-            .isPreviewImage(isPreviewImage) // 是否可预览图片
-            .isEnableCrop(isEnableCrop) // 是否裁剪
-            //.basicUCropConfig()//对外提供所有UCropOptions参数配制，但如果PictureSelector原本支持设置的还是会使用原有的设置
-            .isCompress(isCompress) // 是否压缩
-            .compressSavePath(getPath())
-            .glideOverride(160, 160) // glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-            .hideBottomControls(false) // 是否显示uCrop工具栏，默认不显示
-            .freeStyleCropEnabled(false) // 裁剪框是否可拖拽
-            .circleDimmedLayer(false) // 是否圆形裁剪
-            .minimumCompressSize(minimumCompressSize) // 小于100kb的图片不压缩
-            .forResult(type) //结果回调onActivityResult code
+            .openCamera(SelectMimeType.ofImage())
+            .setCompressEngine(ImageFileCompressEngine())
+            .forResult(object : OnResultCallbackListener<LocalMedia> {
+                override fun onResult(result: ArrayList<LocalMedia>) {
+                    ll.onResult(result, type)
+
+                }
+
+                override fun onCancel() {}
+            })
+
     }
 
-     fun getPath(): String {
+    fun getPath(): String {
         val path = Environment.getExternalStorageDirectory().toString() + "/image/image/"
         val file = File(path)
         return if (file.mkdirs()) path else path
