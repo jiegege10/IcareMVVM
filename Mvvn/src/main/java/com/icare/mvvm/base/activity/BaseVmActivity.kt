@@ -135,16 +135,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : SupportActivity() {
                 }
             }
 
-            override fun onReceivedSslError(
-                view: WebView,
-                handler: SslErrorHandler,
-                error: SslError
-            ) {
-                //                super.onReceivedSslError(view, handler, error);
-                if (handler != null) {
-                    handler.proceed() //忽略证书的错误继续加载页面内容，不会变成空白页面
-                }
-            }
+
 
             @TargetApi(21)
             override fun shouldInterceptRequest(
